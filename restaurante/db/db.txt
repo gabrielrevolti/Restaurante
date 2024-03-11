@@ -1,0 +1,28 @@
+DOCKER:
+
+docker pull mysql:5.7
+docker run --name mysql5 -e MYSQL_ROOT_PASSWORD=mudar123 -p 3306:3306 -d mysql:5.7
+docker inspect id_docker | findstr "IPAddress"
+docker ps
+
+docker exec -it id_container /bin/bash
+
+mysql -uroot -p
+
+create schema teste;
+use teste;
+---------------------------------------------------------------------------------------------------------------
+
+TABLES:
+
+TBL_ITEMS:
+CREATE TABLE TBL_ITEMS( 
+  itemId BIGINT NOT NULL AUTO_INCREMENT,
+  itemName VARCHAR(45) NOT NULL,
+  itemImage VARCHAR(45) NOT NULL, 
+  itemDescription VARCHAR(45) NOT NULL, 
+  PRIMARY KEY (itemId));
+
+---------------------------------------------------------------------------------------------------------------
+INSERTS:
+INSERT INTO tbl_items ( item_id, item_name, item_description ) values ( p_name, p_image, p_description );
