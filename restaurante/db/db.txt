@@ -15,8 +15,8 @@ use teste;
 
 TABLES:
 
-TBL_ITEMS:
-CREATE TABLE TBL_ITEMS( 
+tbl_items:
+CREATE TABLE tbl_items( 
   itemId BIGINT NOT NULL AUTO_INCREMENT,
   itemName VARCHAR(45) NOT NULL,
   itemImage VARCHAR(45) NOT NULL, 
