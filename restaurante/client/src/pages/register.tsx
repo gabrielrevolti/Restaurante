@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -24,7 +23,6 @@ const RegisterProduct = () => {
 
   return ( 
     <>
-    <Header/>
     <div className="m-5">
       <h1 className="pb-2">Página: Register Product</h1>
         <form onSubmit={handleSubmit}>
@@ -49,10 +47,12 @@ const RegisterProduct = () => {
           <br />
           <br />
 
-          <Button variant="secondary" type="submit">Enviar</Button>
+          <div className="flex gap-2">
+            <Button variant="secondary" type="submit">Enviar</Button>
+            <Button variant="secondary"><a href="/">Voltar</a></Button>
+          </div>
         </form>
       </div>
-
     </>
    );
 }
