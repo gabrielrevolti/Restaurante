@@ -9,7 +9,7 @@ db = connector.connect(user="root", password="mudar123", database="restaurante")
 @app.route("/")
 def buscar_tabela():
     c = db.cursor(dictionary=True)
-    query = """SELECT * FROM TBL_ITEMS;"""
+    query = """SELECT * FROM tbl_items;"""
     c.execute(query)
     result = c.fetchall()
     c.close()
@@ -24,7 +24,7 @@ def submit_form():
       
     if name and image and description:
         c = db.cursor()
-        query = """ insert into TBL_ITEMS ( itemName, itemImage, itemDescription ) values ("%s", "%s", "%s");""" %(name, image, description)
+        query = """ insert into tbl_items ( itemName, itemImage, itemDescription ) values ("%s", "%s", "%s");""" %(name, image, description)
         c.execute(query)
         db.commit()
         c.close()

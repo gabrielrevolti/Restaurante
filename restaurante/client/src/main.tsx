@@ -4,7 +4,6 @@ import App from './App.tsx'
 import "./global.css"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-// import Home from './pages/home.tsx'
 import RegisterProduct from './pages/register.tsx'
 import Index from './pages/home/index.tsx'
 

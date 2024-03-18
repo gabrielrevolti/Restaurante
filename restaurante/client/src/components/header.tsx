@@ -1,27 +1,22 @@
-import { MenuIcon } from "lucide-react";
-import { Button } from "./ui/button";
-import { Card, CardContent } from "./ui/card";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import SideMenu from "./sidemenu";
+import logoChef from "../components/images/logo-chef-menu.png"
+// import hamburguerKratos from "../components/images/hamburguerKratos.png"
 
-const Header = () => {
-  return ( 
-    <Card >
-      <CardContent className="p-5 justify-between items-center flex flex-row">
-        <a href="/">Home</a>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" size="icon">
-              <MenuIcon size={16} />
-            </Button>
-          </SheetTrigger>
-          <SheetContent className="p-0">
-            <SideMenu/>
-          </SheetContent>
-        </Sheet>
-      </CardContent>
-    </Card>
-   );
-}
- 
+const Header = () => (
+  <header className="header">
+    <a href="#" className="logo">
+      <img className="logo-chef" src={logoChef} alt="logo" />
+      Cabana do Kratos
+    </a>
+
+    <div id="menu-bar" className="fas fa-bars"></div>
+
+    <nav className="navbar">
+      <a href="/" className="nav-menu-item">Home</a>
+      <a href="#popular" className="nav-menu-item">Popular</a>
+      <a href="#pedi" className="nav-menu-item">Pedir</a>
+      <a href="/register" className="nav-menu-item">Registrar</a>
+    </nav>
+  </header>
+);
+
 export default Header;

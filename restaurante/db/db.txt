@@ -19,8 +19,8 @@ tbl_items:
 CREATE TABLE tbl_items( 
   itemId BIGINT NOT NULL AUTO_INCREMENT,
   itemName VARCHAR(45) NOT NULL,
-  itemImage VARCHAR(45) NOT NULL, 
-  itemDescription VARCHAR(45) NOT NULL, 
+  itemImage VARCHAR(255) NOT NULL, 
+  itemDescription VARCHAR(100) NOT NULL, 
   PRIMARY KEY (itemId));
 
 ---------------------------------------------------------------------------------------------------------------

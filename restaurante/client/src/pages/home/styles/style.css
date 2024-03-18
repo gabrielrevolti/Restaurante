@@ -27,6 +27,12 @@ section {
   padding: 2rem 9%;
 }
 
+.cover {
+  background: url(../images/background-black.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 .heading {
   text-align: center;
   font-size: 3.5rem;
@@ -73,7 +79,7 @@ section {
   transition: 0.4s;
 }
 
-header {
+.header {
   position: fixed;
   top: 0;
   left: 0;
@@ -87,7 +93,7 @@ header {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
-header .logo {
+.header .logo {
   font-size: 2.5rem;
   font-weight: bolder;
   color: #fff;
@@ -124,9 +130,6 @@ header .navbar a:hover {
   gap: 1.5rem;
   min-height: 100vh;
   align-items: center;
-  background: url(../images/background-black.png) no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 
 .home .content {
@@ -166,6 +169,8 @@ header .navbar a:hover {
   color: rgb(209, 209, 209);
 }
 
+/* Cards */
+
 /* media queries */
 
 @media (max-width: 991px) {
@@ -187,7 +192,7 @@ header .navbar a:hover {
     display: initial;
   }
 
-  header .navbar {
+  .header .navbar {
     position: absolute;
     top: 100%;
     left: 0;
@@ -197,11 +202,11 @@ header .navbar a:hover {
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
   }
 
-  header .navbar.active {
+  .header .navbar.active {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
   }
 
-  header .navbar a {
+  .header .navbar a {
     margin: 1.5rem;
     padding: 1.5rem;
     display: block;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Cards from "./cards/card";
 
 interface pratosDB {
   itemId : number,
@@ -22,17 +23,16 @@ const Fetch = () => {
   }, [])
 
   return (
-    <>
-      {pratos.map((prato: pratosDB) => (
-        <div className="mb-5" key={prato.itemId}>
-          <h1>Nome do item: {prato.itemName}</h1>
-          <p className="text-white">Imagem: {prato.itemImage}</p>
-          <p className="text-white">Descrição: {prato.itemDescription}</p>
-        </div>
-      ))}
-    </>
- 
-   );
+    <section>
+      <div className="flex gap-8">
+        {pratos.map((prato: pratosDB) => (
+          <div key={prato.itemId}>
+            <Cards name={prato.itemName} description={prato.itemDescription} image={prato.itemImage}/>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }
  
 export default Fetch;
