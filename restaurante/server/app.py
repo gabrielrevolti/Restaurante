@@ -28,7 +28,6 @@ def submit_form():
         c.execute(query)
         db.commit()
         c.close()
-        print("Connection succeed")
         return jsonify({
           'requisicao': 'Feita com sucesso',
           'message': [name, image, description]})
@@ -37,6 +36,18 @@ def submit_form():
           'requisicao': 'erro',
           'message': [name, image, description]
         })
+    
+@app.route('/delete/<int:itemId>', methods=['DELETE'])
+def remove_card(itemId):
+    try:
+        c = db.cursor()
+        query = """ delete from tbl_items where itemId = "%s";""" %(itemId)
+        c.execute(query)
+        db.commit()
+        c.close()
+        return jsonify({'message': f'Card com ID {itemId} removido com sucesso'})
+    except:
+        return jsonify({'message': f'Card com ID {itemId} não encontrado'}), 404
     
 if __name__ == '__main__':
     app.run(debug=True)

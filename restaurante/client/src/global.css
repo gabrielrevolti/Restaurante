@@ -8,7 +8,7 @@
     --foreground: 210 40% 98%;
 
     --card: 228 9% 11%;
-    --card-foreground: 210 40% 98%;
+    --card-foreground: rgba(29, 28, 28, 0.808);
 
     --popover: 228 9% 11%;
     --popover-foreground: 210 40% 98%;
