@@ -54,7 +54,7 @@ const Fetch = () => {
 
   return (
     <section>
-      <div className="flex gap-8">
+      <div className="div-cards">
         {pratos.map((prato: pratosDB) => (
           <div key={prato.itemId}>
             <Cards name={prato.itemName} description={prato.itemDescription} image={prato.itemImage}/>

@@ -1,21 +1,3 @@
-requirements:
-Docker
-Node
-
-client:
-npm install
-npm run dev
-
-server:
-pip install flask
-pip install mysql-connector-python
-pip install flask-cors
-py app.py
-
-
-
-
-
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

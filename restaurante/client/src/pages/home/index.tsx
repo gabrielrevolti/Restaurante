@@ -5,8 +5,9 @@ import './styles/style.css';
 
 
 const Index = () => (
-  <div className='cover'>
+  
     <>
+    <div className='cover'>
     <Header />
   
     <section className="home" id="home">
@@ -37,8 +38,9 @@ const Index = () => (
       </div>
     </div>
     </section>
-  </>
+ 
   </div>
+  </>
 );
 
 export default Index;

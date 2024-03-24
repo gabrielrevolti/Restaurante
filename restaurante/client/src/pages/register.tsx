@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const RegisterProduct = () => {
 
@@ -23,33 +23,33 @@ const RegisterProduct = () => {
 
   return ( 
     <>
-    <div className="m-5">
-      <h1 className="pb-2">Página: Register Product</h1>
+    <div>
+      <h1>Página: Register Product</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor='name'>Nome:</label>
-          <input className="text-black" 
+          <input 
           type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
 
           <br />
           <br />
 
           <label htmlFor='image'>Imagem:</label>
-          <input className="text-black" 
+          <input
           type="text" id='image' value={image} onChange={(e) => setImage(e.target.value)} />
 
           <br />
           <br />
 
           <label htmlFor="description">Descrição</label>
-          <input className="text-black" 
+          <input
           type="text" id='description' value={description} onChange={(e) => setDescription(e.target.value)} />
 
           <br />
           <br />
 
-          <div className="flex gap-2">
-            <Button variant="secondary" type="submit">Enviar</Button>
-            <Button variant="secondary"><a href="/">Voltar</a></Button>
+          <div>
+            <button className="button" type="submit">Enviar</button>
+            <button className="button"><Link to="/">Voltar</Link></button>
           </div>
         </form>
       </div>

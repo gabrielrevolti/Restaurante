@@ -148,6 +148,24 @@ header .navbar a:hover {
   animation: float 3s linear infinite;
 }
 
+.button {
+  margin: 2px;
+  border: #272527 solid 2px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.div-cards {
+  display: flex;
+}
+
+
+.img {
+  width: 160px;
+  height: 200px;
+  margin-right: 10px;
+}
+
 @keyframes float {
   0%,
   100% {
