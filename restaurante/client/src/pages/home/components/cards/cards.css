@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+.container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-family: "Mulish", sans-serif;
+  gap: 16px;
+}
+
+.Card {
+  width: 212px;
+  height: 350px;
+  border-radius: 12px;
+  background-color: rgba(116, 113, 113, 0.295);
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 2);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.Card:hover {
+  background-color: rgba(153, 151, 151, 0.295);
+  box-shadow: 7px 7px 16px rgba(0, 0, 0, 20);
+}
+
+.Card .card-img {
+  display: flex;
+  justify-content: center;
+}
+
+.Card .card-img img {
+  width: 200px;
+  padding: 15px;
+  border-radius: 27px;
+}
+.Card .nameFood {
+  color: #fff;
+  font-size: 2.1rem;
+  font-family: "Mulish", sans-serif;
+  text-align: center;
+  margin-top: 14px;
+}

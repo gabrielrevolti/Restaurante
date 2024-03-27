@@ -159,11 +159,10 @@ header .navbar a:hover {
   display: flex;
 }
 
-
-.img {
-  width: 160px;
-  height: 200px;
-  margin-right: 10px;
+.box-container {
+  width: 100%;
+  overflow-x: scroll;
+  scrollbar-width: none;
 }
 
 @keyframes float {

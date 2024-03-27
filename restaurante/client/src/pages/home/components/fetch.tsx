@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Cards from "./cards/card";
+import "./cards/cards.css"
 
 interface pratosDB {
   itemId : number,
@@ -52,17 +53,16 @@ const Fetch = () => {
     setPratos(updatedPratos);
   };
 
+
   return (
-    <section>
-      <div className="div-cards">
+      <div className="container">
         {pratos.map((prato: pratosDB) => (
-          <div key={prato.itemId}>
+          <div className="Card" key={prato.itemId}>
             <Cards name={prato.itemName} description={prato.itemDescription} image={prato.itemImage}/>
             <button onClick={() => handleDeleteItem(prato.itemId)}>Excluir</button>
           </div>
         ))}
       </div>
-    </section>
   );
 }
  

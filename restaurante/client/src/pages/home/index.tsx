@@ -10,7 +10,7 @@ const Index = () => (
     <div className='cover'>
     <Header />
   
-    <section className="home" id="home">
+    <section className="home padding-section" id="home">
       <div className="content">
         <h3>Comidas feitas com carinho</h3>
         <p>
@@ -27,15 +27,11 @@ const Index = () => (
       </div>
     </section>
 
-    <section className="shopping" id="shopping">
+    <section className="shopping section-cards" id="shopping">
     <h1 className="heading"> Pedir <span>pratos</span></h1>
 
     <div className="box-container">
-      <img src="" alt="" />
-      <div>
-        <Fetch/> {/* Faz um fetch no banco de dados e renderiza na tela*/}
-        <button></button>
-      </div>
+      <Fetch/> {/* Faz um fetch no banco de dados e renderiza na tela*/}
     </div>
     </section>
  

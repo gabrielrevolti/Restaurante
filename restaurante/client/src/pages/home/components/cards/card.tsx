@@ -7,12 +7,10 @@ interface CardProps {
 const Cards = ( props: CardProps) => {
   return ( 
       <>
-      <div>
-        <h2>{props.name}</h2>
-        <img className="img" src={props.image} alt={props.name} />
-        <p>{props.description}</p>
-      </div>
-       
+        <h2 className="nameFood">{props.name}</h2>
+        <div className="card-img">
+          <img src={props.image} alt={props.name} />
+        </div>
       </>
    );
 }
