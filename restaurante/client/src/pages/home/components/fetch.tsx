@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Cards from "./cards/card";
 import "./cards/cards.css"
+import { Link } from "react-router-dom";
 
 interface pratosDB {
   itemId : number,
@@ -60,6 +61,7 @@ const Fetch = () => {
           <div className="Card" key={prato.itemId}>
             <Cards name={prato.itemName} description={prato.itemDescription} image={prato.itemImage}/>
             <button onClick={() => handleDeleteItem(prato.itemId)}>Excluir</button>
+            <button><Link to={`update/${prato.itemId}`}>Mudar</Link></button>
           </div>
         ))}
       </div>

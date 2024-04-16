@@ -34,7 +34,6 @@ const Index = () => (
       <Fetch/> {/* Faz um fetch no banco de dados e renderiza na tela*/}
     </div>
     </section>
- 
   </div>
   </>
 );

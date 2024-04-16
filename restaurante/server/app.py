@@ -15,6 +15,15 @@ def buscar_tabela():
     c.close()
     return jsonify(result)
 
+@app.route("/getItem/<int:itemId>")
+def pegar_item(itemId):
+    c = db.cursor(dictionary=True)
+    query = """SELECT * FROM tbl_items where itemId = "%s"; """ %(itemId)
+    c.execute(query)
+    result = c.fetchall()
+    c.close()
+    return jsonify(result)
+
 @app.route('/submit', methods=["GET","POST"])
 def submit_form():
     data = request.get_json()
@@ -48,6 +57,29 @@ def remove_card(itemId):
         return jsonify({'message': f'Card com ID {itemId} removido com sucesso'})
     except:
         return jsonify({'message': f'Card com ID {itemId} não encontrado'}), 404
+    
+@app.route('/update/<int:itemId>', methods=['PUT'])
+def change_card(itemId):
+    data = request.get_json()
+    name = data.get('name')
+    image = data.get('image')
+    description = data.get('description')
+
+    try:
+        c = db.cursor()
+        query = """ 
+        update tbl_items
+        set itemName = "%s",
+	        itemImage = "%s",
+            itemDescription = "%s"
+        where itemId = "%s"; """ %(name, image, description, itemId)
+        c.execute(query)
+        db.commit()
+        c.close()
+        return jsonify({'message': f'Card com ID {itemId} alterado com sucesso'})
+    except:
+        return jsonify({'message': f'Card com ID {itemId} não encontrado'}), 404
+
     
 if __name__ == '__main__':
     app.run(debug=True)
