@@ -22,7 +22,7 @@ const UpdateItem = () => {
   }, [])
 
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(`http://127.0.0.1:5000/update/${id}`, {
         method: 'PUT',
@@ -35,8 +35,6 @@ const UpdateItem = () => {
     console.log(data.requisicao);
     console.log(data.message)
 };
-
-
 
   return ( 
     <>

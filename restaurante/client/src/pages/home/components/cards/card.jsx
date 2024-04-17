@@ -1,10 +1,6 @@
-interface CardProps {
-  name: string;
-  description: string;
-  image: string;
-}
 
-const Cards = ( props: CardProps) => {
+
+const Cards = (props) => {
   return ( 
       <>
         <h2 className="nameFood">{props.name}</h2>

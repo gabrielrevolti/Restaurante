@@ -7,7 +7,7 @@ const RegisterProduct = () => {
   const [image, setImage] = useState(String);
   const [description, setDescription] = useState(String);
 
-    const handleSubmit = async (e:any) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await fetch('http://127.0.0.1:5000/submit', {
             method: 'POST',

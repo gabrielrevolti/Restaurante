@@ -3,16 +3,10 @@ import Cards from "./cards/card";
 import "./cards/cards.css"
 import { Link } from "react-router-dom";
 
-interface pratosDB {
-  itemId : number,
-  itemName: string,
-  itemDescription: string,
-  itemImage: string
-}
 
 const Fetch = () => {
 
-  const [pratos, setPratos] = useState<pratosDB[]>([])
+  const [pratos, setPratos] = useState([])
 
   useEffect( () => {
     const getData = async () => {
@@ -26,7 +20,7 @@ const Fetch = () => {
 
   
 
-  const handleDeleteItem = async (itemId:number) => {
+  const handleDeleteItem = async (itemId) => {
     try {
       const apiUrl = `http://127.0.0.1:5000/delete/${itemId}`;
 
@@ -57,7 +51,7 @@ const Fetch = () => {
 
   return (
       <div className="container">
-        {pratos.map((prato: pratosDB) => (
+        {pratos.map((prato) => (
           <div className="Card" key={prato.itemId}>
             <Cards name={prato.itemName} description={prato.itemDescription} image={prato.itemImage}/>
             <button onClick={() => handleDeleteItem(prato.itemId)}>Excluir</button>
