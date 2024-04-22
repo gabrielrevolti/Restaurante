@@ -2,13 +2,9 @@ import Fetch from './components/fetch';
 import Header from '../../components/header'
 import burgueImg from "./images/burguer.png"
 import './styles/style.css';
-import { useItems } from '../../hooks/useItems';
-
 
 const Index = () => {
 
-  const {consoleLog} = useItems()
-  consoleLog()
   return (
     <>
       <div className='cover'>
