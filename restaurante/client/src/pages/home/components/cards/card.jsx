@@ -5,6 +5,7 @@ const Cards = (props) => {
         <div className="card-img">
           <img src={props.image} alt={props.name} />
         </div>
+        <p>R$ {props.price}</p>
       </>
    );
 }

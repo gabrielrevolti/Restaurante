@@ -30,20 +30,21 @@ def submit_form():
     name = data.get('name')
     image = data.get('image')
     description = data.get('description')
+    price = data.get('price')
       
-    if name and image and description:
+    if name and image and description and price:
         c = db.cursor()
-        query = """ insert into tbl_items ( itemName, itemImage, itemDescription ) values ("%s", "%s", "%s");""" %(name, image, description)
+        query = """ insert into tbl_items ( itemName, itemImage, itemDescription, itemPrice ) values ("%s", "%s", "%s", "%s");""" %(name, image, description, price)
         c.execute(query)
         db.commit()
         c.close()
         return jsonify({
           'requisicao': 'Feita com sucesso',
-          'message': [name, image, description]})
+          'message': [name, image, description, price]})
     else:
         return jsonify({
           'requisicao': 'erro',
-          'message': [name, image, description]
+          'message': [name, image, description, price]
         })
     
 @app.route('/delete/<int:itemId>', methods=['DELETE'])
@@ -64,6 +65,7 @@ def change_card(itemId):
     name = data.get('name')
     image = data.get('image')
     description = data.get('description')
+    price = data.get('price')
 
     try:
         c = db.cursor()
@@ -71,8 +73,9 @@ def change_card(itemId):
         update tbl_items
         set itemName = "%s",
 	        itemImage = "%s",
-            itemDescription = "%s"
-        where itemId = "%s"; """ %(name, image, description, itemId)
+            itemDescription = "%s",
+            itemPrice = "%s"
+        where itemId = "%s"; """ %(name, image, description, price, itemId)
         c.execute(query)
         db.commit()
         c.close()

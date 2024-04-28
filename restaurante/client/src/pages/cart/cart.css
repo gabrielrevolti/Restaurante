@@ -16,6 +16,13 @@
   cursor: pointer;
 }
 
+.x-button {
+  color: white;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
 .container-cart {
   display: flex;
   flex-direction: column;

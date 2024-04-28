@@ -1,4 +1,4 @@
-import Fetch from './components/fetch';
+import Fetch from './components/renderCard/fetch';
 import Header from '../../components/header/header'
 import burgueImg from "./images/burguer.png"
 import './styles/style.css';

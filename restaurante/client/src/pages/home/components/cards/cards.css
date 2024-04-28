@@ -16,6 +16,7 @@
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 2);
   cursor: pointer;
   transition: 0.3s;
+  position: relative;
 }
 
 .Card:hover {
@@ -39,4 +40,28 @@
   font-family: "Mulish", sans-serif;
   text-align: center;
   margin-top: 14px;
+}
+
+.icon {
+  outline: none;
+  border: none;
+  text-decoration: none;
+  color: white;
+  width: 13px;
+  height: 13px;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  gap: 2px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.x-btn {
+  width: 16px;
+  height: 16px;
 }

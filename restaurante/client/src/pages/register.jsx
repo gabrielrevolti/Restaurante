@@ -6,6 +6,7 @@ const RegisterProduct = () => {
   const [name, setName] = useState(String);
   const [image, setImage] = useState(String);
   const [description, setDescription] = useState(String);
+  const [price, setPrice] = useState(String)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -14,7 +15,7 @@ const RegisterProduct = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name, image, description })
+            body: JSON.stringify({ name, image, description, price })
         });
         const data = await response.json();
         console.log(data.requisicao);
@@ -43,6 +44,13 @@ const RegisterProduct = () => {
           <label htmlFor="description">Descrição</label>
           <input
           type="text" id='description' value={description} onChange={(e) => setDescription(e.target.value)} />
+
+          <br />
+          <br />
+
+          <label htmlFor="description">Preço</label>
+          <input
+          type="text" id='price' value={price} onChange={(e) => setPrice(e.target.value)} />
 
           <br />
           <br />

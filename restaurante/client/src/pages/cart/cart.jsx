@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import "./cart.css"
 import { TiArrowLeftThick } from "react-icons/ti";
+import { AiOutlineClose } from "react-icons/ai";
 import { useItems } from "../../hooks/useItems";
 
 const Cart = () => {
@@ -24,8 +25,8 @@ const Cart = () => {
             </div>
           
             <span className="quantity-cart">1</span>
-            <span className="price-cart">R$ preço</span>
-            <button onClick={()=> removeToCart(item.itemId)}>Remover</button>
+            <span className="price-cart">R$ {item.itemPrice}</span>
+            <AiOutlineClose className="x-button" onClick={()=> removeToCart(item.itemId)}/>
           </div>
           ))}
         </div>

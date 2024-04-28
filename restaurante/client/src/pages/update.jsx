@@ -6,6 +6,7 @@ const UpdateItem = () => {
   const [name, setName] = useState(String);
   const [image, setImage] = useState(String);
   const [description, setDescription] = useState(String);
+  const [price, setPrice] = useState(String)
 
   const {id} = useParams()
 
@@ -17,6 +18,7 @@ const UpdateItem = () => {
     setName(data[0].itemName)
     setImage(data[0].itemImage)
     setDescription(data[0].itemDescription)
+    setPrice(data[0].itemPrice)
     }
     getData()
   }, [])
@@ -29,7 +31,7 @@ const UpdateItem = () => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, image, description})
+        body: JSON.stringify({ name, image, description, price})
     });
     const data = await response.json();
     console.log(data.requisicao);
@@ -58,6 +60,13 @@ const UpdateItem = () => {
           <label htmlFor="description">Descrição</label>
           <input
           type="text" id='description' value={description} onChange={(e) => setDescription(e.target.value)} />
+
+          <br />
+          <br />
+
+          <label htmlFor="description">Preço</label>
+          <input
+          type="text" id='price' value={price} onChange={(e) => setPrice(e.target.value)} />
 
           <br />
           <br />
