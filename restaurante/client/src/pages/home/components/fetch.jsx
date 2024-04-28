@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import Cards from "./cards/card";
 import "./cards/cards.css"
 import { Link } from "react-router-dom";
+import { useItems } from "../../../hooks/useItems";
 
 
 const Fetch = () => {
+
+  const {addToCart, verification} = useItems()
 
   const [pratos, setPratos] = useState([])
 
@@ -48,7 +51,6 @@ const Fetch = () => {
     setPratos(updatedPratos);
   };
 
-
   return (
       <div className="container">
         {pratos.map((prato) => (
@@ -56,6 +58,7 @@ const Fetch = () => {
             <Cards name={prato.itemName} description={prato.itemDescription} image={prato.itemImage}/>
             <button onClick={() => handleDeleteItem(prato.itemId)}>Excluir</button>
             <button><Link to={`update/${prato.itemId}`}>Mudar</Link></button>
+            <button onClick={() => addToCart(prato)}>adicionar</button>
           </div>
         ))}
       </div>

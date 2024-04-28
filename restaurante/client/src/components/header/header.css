@@ -1,0 +1,44 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(29, 28, 28, 0.808);
+  padding: 2rem 3%;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.logo-chef {
+  width: 75px;
+}
+
+header .navbar a {
+  font-size: 2rem;
+  margin-left: 2rem;
+  color: #fff;
+  transition: 0.2s all linear;
+}
+
+header .navbar a:hover {
+  color: rgb(209, 10, 10);
+}
+
+#menu-bar {
+  font-size: 3rem;
+  cursor: pointer;
+  color: #fff;
+  padding: 0.4rem;
+  display: none;
+}

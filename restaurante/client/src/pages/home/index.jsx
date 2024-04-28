@@ -1,10 +1,10 @@
 import Fetch from './components/fetch';
-import Header from '../../components/header'
+import Header from '../../components/header/header'
 import burgueImg from "./images/burguer.png"
 import './styles/style.css';
 
 const Index = () => {
-
+  
   return (
     <>
       <div className='cover'>
