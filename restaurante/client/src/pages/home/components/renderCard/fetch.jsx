@@ -5,6 +5,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { FaPencil } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useItems } from "../../../../hooks/useItems";
+import RegisterCard from "../registerCard/registerCard";
 
 
 const Fetch = () => {
@@ -65,6 +66,9 @@ const Fetch = () => {
             <button onClick={() => addToCart(prato)}>adicionar</button>
           </div>
         ))}
+        <div>
+          <RegisterCard/>
+        </div>
       </div>
   );
 }

@@ -10,7 +10,7 @@
 
 .Card {
   width: 212px;
-  height: 350px;
+  height: 360px;
   border-radius: 12px;
   background-color: rgba(116, 113, 113, 0.295);
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 2);
@@ -40,6 +40,13 @@
   font-family: "Mulish", sans-serif;
   text-align: center;
   margin-top: 14px;
+}
+
+.card-price {
+  color: #fff;
+  font-size: 1.8rem;
+  font-family: "Mulish", sans-serif;
+  margin-left: 10%;
 }
 
 .icon {
