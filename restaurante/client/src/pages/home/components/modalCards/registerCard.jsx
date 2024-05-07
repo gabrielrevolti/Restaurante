@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./registerCard.css"
-import Form from "./components/form";
+import Form from "./form/form";
+import { AiOutlineClose } from "react-icons/ai";
 
 const RegisterCard = () => {
   const [modal, setModal] = useState(false);
@@ -29,9 +30,7 @@ const RegisterCard = () => {
             <div className="modal-inputs">
               <Form togle={toggleModal}/>
             </div>
-            <button className="close-modal" onClick={toggleModal}>
-              CLOSE
-            </button>
+            <AiOutlineClose className="close-btn close-modal" onClick={toggleModal}/>
           </div>
         </div>
       )}

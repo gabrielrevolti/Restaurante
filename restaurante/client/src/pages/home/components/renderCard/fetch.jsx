@@ -5,7 +5,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { FaPencil } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useItems } from "../../../../hooks/useItems";
-import RegisterCard from "../registerCard/registerCard";
+import RegisterCard from "../modalCards/registerCard";
 
 
 const Fetch = () => {
