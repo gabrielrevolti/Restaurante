@@ -3,24 +3,28 @@ import "./form.css"
 
 const Form = (props) => {
 
-  const [name, setName] = useState(String);
-  const [image, setImage] = useState(String);
-  const [description, setDescription] = useState(String);
-  const [price, setPrice] = useState(String)
+  const item = props.itemToUpdate
+  const update = props.updatePrato
+  const togle = props.togle
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const response = await fetch('http://127.0.0.1:5000/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name, image, description, price })
-        });
-        const data = await response.json();
-        console.log(data.requisicao);
-        console.log(data.message)
-    };
+  const [name, setName] = useState(item.itemName);
+  const [image, setImage] = useState(item.itemImage);
+  const [description, setDescription] = useState(item.itemDescription);
+  const [price, setPrice] = useState(item.itemPrice)
+  const id = item.itemId
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    await fetch(`http://127.0.0.1:5000/update/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, image, description, price})
+    });
+    update()
+    togle()
+  };
 
   return ( 
     <>
@@ -39,7 +43,7 @@ const Form = (props) => {
 
             <div className="div-input">
             <input
-              type="text" id='price' value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Preço"/>
+              type="text" id='price' value={price}  onChange={(e) => setPrice(e.target.value)}  placeholder="Preço"/>
             </div>
             
             <div className="div-input">
@@ -50,8 +54,8 @@ const Form = (props) => {
           </div>
         </form>
         <div className="btn-input">
-          <button className="button" onClick={props.togle}>Cancelar</button>
-          <button className="button" onClick={handleSubmit}>Enviar</button>
+          <button className="button" onClick={() => togle()}>Cancelar</button>
+          <button className="button" onClick={handleUpdate}>Mudar</button>
         </div>
       </div>
     </>

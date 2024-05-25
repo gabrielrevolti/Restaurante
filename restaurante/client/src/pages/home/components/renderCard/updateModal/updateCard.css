@@ -19,6 +19,10 @@ body.active-modal {
   position: fixed;
 }
 
+.modal {
+  z-index: 2000;
+}
+
 .overlay {
   background: rgba(49,49,49,0.8);
 }

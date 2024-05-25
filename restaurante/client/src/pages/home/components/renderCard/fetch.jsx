@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import Cards from "../cards/card";
 import "../cards/cards.css"
 import { AiOutlineClose } from "react-icons/ai";
-import { FaPencil } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+
 import { useItems } from "../../../../hooks/useItems";
-import RegisterCard from "../modalCards/registerCard";
+import RegisterCard from "../registerModal/registerCard";
+import UpdateModal from "./updateModal/updateCard";
 
 
 const Fetch = () => {
@@ -14,17 +14,19 @@ const Fetch = () => {
 
   const [pratos, setPratos] = useState([])
 
-  useEffect( () => {
+  const update = () => {
     const getData = async () => {
-    const response = await fetch('http://127.0.0.1:5000')
-    const data = await response.json();
-    console.log(data)
-    setPratos(data)
-    }
-    getData()
-  }, [])
+      const response = await fetch('http://127.0.0.1:5000')
+      const data = await response.json();
+      console.log(data)
+      setPratos(data)
+      }
+      getData()
+  }
 
-  
+  useEffect( () => {
+    update()
+  }, [])
 
   const handleDeleteItem = async (itemId) => {
     try {
@@ -60,14 +62,14 @@ const Fetch = () => {
           <div className="Card" key={prato.itemId}>
             <Cards name={prato.itemName} description={prato.itemDescription} image={prato.itemImage} price={prato.itemPrice}/>
             <div className="icons">
-              <Link  to={`update/${prato.itemId}`}> <FaPencil className="icon"/>  </Link>
+              <UpdateModal  item={prato} updatePrato={() => update()}/>
               <AiOutlineClose className="icon x-btn" onClick={() => handleDeleteItem(prato.itemId)}/>
             </div>
             <button onClick={() => addToCart(prato)}>adicionar</button>
           </div>
         ))}
         <div>
-          <RegisterCard/>
+          <RegisterCard updatePrato={() => update()}/>
         </div>
       </div>
   );

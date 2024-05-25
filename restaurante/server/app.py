@@ -82,6 +82,28 @@ def change_card(itemId):
         return jsonify({'message': f'Card com ID {itemId} alterado com sucesso'})
     except:
         return jsonify({'message': f'Card com ID {itemId} não encontrado'}), 404
+    
+@app.route('/register', methods=['GET', 'POST'])
+def register_user():
+    data = request.get_json()
+    name = data['item'].get('name')
+    email = data['item'].get('email')
+    password = data['item'].get('password')
+    
+    if name and email and password:
+        c = db.cursor()
+        query = """ insert into tbl_users ( username, email, password) values ("%s", "%s", "%s");""" %(name, email, password)
+        c.execute(query)
+        db.commit()
+        c.close()
+        return jsonify({
+            'requisicao': 'Feita com sucesso',
+            'message': [name, email]})
+    else:
+        return jsonify({
+          'requisicao': 'erro',
+          'message': [name, email]
+        })
 
     
 if __name__ == '__main__':

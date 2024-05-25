@@ -1,0 +1,34 @@
+form {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+
+input {
+  border: 2px solid white;
+  color: black;
+  width: 100%;
+  padding:3px;
+  border-radius: 3px;
+} 
+
+
+.div-input {
+  margin-bottom: 10px;
+  width: 400px;
+}
+
+.div-input-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-input {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+

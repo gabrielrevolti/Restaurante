@@ -18,7 +18,7 @@ const Header = () => {
     <nav className="navbar">
       <Link to="/" className="nav-menu-item">Home</Link>
       <Link to="#popular" className="nav-menu-item">Popular</Link>
-      <Link to="/register" className="nav-menu-item">Registrar</Link>
+      <Link to="/login" className="nav-menu-item">Entrar</Link>
       <Link to="/cart" className="nav-menu-item">Carrinho</Link>
     </nav>
   </header>
