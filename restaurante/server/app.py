@@ -15,6 +15,8 @@ def buscar_tabela():
     c.close()
     return jsonify(result)
 
+
+
 @app.route("/getItem/<int:itemId>")
 def pegar_item(itemId):
     c = db.cursor(dictionary=True)
@@ -24,13 +26,16 @@ def pegar_item(itemId):
     c.close()
     return jsonify(result)
 
+
+
 @app.route('/submit', methods=["GET","POST"])
 def submit_form():
     data = request.get_json()
-    name = data.get('name')
-    image = data.get('image')
-    description = data.get('description')
-    price = data.get('price')
+    print(data)
+    name = data['item'].get('itemName')
+    image = data['item'].get('itemImage')
+    description = data['item'].get('itemDescription')
+    price = data['item'].get('itemPrice')
       
     if name and image and description and price:
         c = db.cursor()
@@ -47,6 +52,8 @@ def submit_form():
           'message': [name, image, description, price]
         })
     
+
+    
 @app.route('/delete/<int:itemId>', methods=['DELETE'])
 def remove_card(itemId):
     try:
@@ -59,14 +66,15 @@ def remove_card(itemId):
     except:
         return jsonify({'message': f'Card com ID {itemId} não encontrado'}), 404
     
+
+    
 @app.route('/update/<int:itemId>', methods=['PUT'])
 def change_card(itemId):
     data = request.get_json()
-    name = data.get('name')
-    image = data.get('image')
-    description = data.get('description')
-    price = data.get('price')
-
+    name = data['item'].get('itemName')
+    image = data['item'].get('itemImage')
+    description = data['item'].get('itemDescription')
+    price = data['item'].get('itemPrice')
     try:
         c = db.cursor()
         query = """ 
@@ -82,6 +90,8 @@ def change_card(itemId):
         return jsonify({'message': f'Card com ID {itemId} alterado com sucesso'})
     except:
         return jsonify({'message': f'Card com ID {itemId} não encontrado'}), 404
+    
+
     
 @app.route('/register', methods=['GET', 'POST'])
 def register_user():
@@ -104,6 +114,7 @@ def register_user():
           'requisicao': 'erro',
           'message': [name, email]
         })
+    
 
     
 if __name__ == '__main__':

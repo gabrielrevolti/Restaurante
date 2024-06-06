@@ -7,8 +7,17 @@ export const ItemsContextProvider = ({children}) => {
   const [cartItems, setCartItems] = useState([])
 
   const addToCart = (item) => {
-    const updatedCartItems = [...cartItems, item]
-    setCartItems(updatedCartItems)
+    const verify = cartItems.filter(i => i.itemId == item.itemId)
+    console.log(verify)
+    if(verify.length >= 1){
+      item.itemQuantity += 1
+    }
+    else {
+      const updatedCartItems = [...cartItems, item]
+      setCartItems(updatedCartItems)
+      item.itemQuantity = 1
+    }
+   console.log(cartItems)
   }
 
   const removeToCart = (itemId) => {

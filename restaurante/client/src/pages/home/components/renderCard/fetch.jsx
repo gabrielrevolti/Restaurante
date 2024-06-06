@@ -4,9 +4,8 @@ import "../cards/cards.css"
 import { AiOutlineClose } from "react-icons/ai";
 
 import { useItems } from "../../../../hooks/useItems";
-import RegisterCard from "../registerModal/registerCard";
 import UpdateModal from "./updateModal/updateCard";
-
+import RegisterCard from "./registerModal/registerCard";
 
 const Fetch = () => {
 

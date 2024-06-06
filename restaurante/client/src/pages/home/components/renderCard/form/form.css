@@ -32,3 +32,20 @@ input {
   gap: 10px;
 }
 
+.buttons{
+  margin-top: 5px;
+  background-color: #fefefe;
+  border-radius: 5px;
+  border: 0;
+  color: #2c2c2d;
+  cursor: pointer;
+  padding: 6px;
+  font-size: 14px;
+  transition: .2s;
+  width: 70px;
+}
+
+
+.buttons.is-danger {
+  background-color: #ff5258;
+}

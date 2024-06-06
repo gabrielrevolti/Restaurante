@@ -24,7 +24,7 @@ const Cart = () => {
               </div>
             </div>
           
-            <span className="quantity-cart">1</span>
+            <span className="quantity-cart">{item.itemQuantity}</span>
             <span className="price-cart">R$ {item.itemPrice}</span>
             <AiOutlineClose className="x-button" onClick={()=> removeToCart(item.itemId)}/>
           </div>

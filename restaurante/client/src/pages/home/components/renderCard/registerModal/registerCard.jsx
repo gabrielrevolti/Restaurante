@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./registerCard.css"
-import Form from "./form/form";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaPlus } from "react-icons/fa";
+import Form from "../form/form";
 
 const RegisterCard = (props) => {
   const [modal, setModal] = useState(false);

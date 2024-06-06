@@ -1,8 +1,9 @@
 import "./updateCard.css"
-import Form from "./form/form";
+
 import { AiOutlineClose } from "react-icons/ai";
 import { FaPencil } from "react-icons/fa6";
 import { useState } from "react";
+import Form from "../form/form";
 
 const UpdateModal = (props) => {
   const [updateModal, setUpdateModal] = useState()
@@ -27,7 +28,7 @@ const UpdateModal = (props) => {
           <div className="modal-content">
             <h2 className="modal-title">Atualizar</h2>
             <div className="modal-inputs">
-              <Form togle={togleModal} itemToUpdate={props.item} updatePrato={props.updatePrato}/>
+              <Form toggle={togleModal} itemToUpdate={props.item} updatePrato={props.updatePrato}/>
             </div>
             <AiOutlineClose className="close-btn close-modal" onClick={togleModal}/>
           </div>
