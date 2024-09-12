@@ -23,6 +23,14 @@ CREATE TABLE tbl_items(
   itemDescription VARCHAR(100) NOT NULL, 
   PRIMARY KEY (itemId));
 
+create table tbl_users(
+  userId int not null auto_increment,
+  username varchar(255) not null,
+  password varchar(255) not null,
+  email varchar(255) not null,
+  role enum('cliente', 'admin') DEFAULT 'cliente',
+  PRIMARY KEY (userId));
+
 ---------------------------------------------------------------------------------------------------------------
 INSERTS:
 INSERT INTO tbl_items ( item_id, item_name, item_description ) values ( p_name, p_image, p_description );

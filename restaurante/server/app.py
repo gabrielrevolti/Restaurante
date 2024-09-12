@@ -1,10 +1,19 @@
-from flask import Flask, request, jsonify,json
+from flask import Flask, request, jsonify, session
+from flask_bcrypt import Bcrypt
+from config import AplicationConfig
+from flask_session import Session
 from mysql import connector
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+app.config.from_object(AplicationConfig)
+
+CORS(app, supports_credentials=True)
+server_session = Session(app)
+bcrypt = Bcrypt(app)
+
 db = connector.connect(user="root", password="mudar123", database="restaurante")
+
 
 @app.route("/")
 def buscar_tabela():
@@ -101,8 +110,9 @@ def register_user():
     password = data['item'].get('password')
     
     if name and email and password:
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         c = db.cursor()
-        query = """ insert into tbl_users ( username, email, password) values ("%s", "%s", "%s");""" %(name, email, password)
+        query = """ insert into tbl_users ( username, email, password) values ("%s", "%s", "%s");""" %(name, email, hashed_password)
         c.execute(query)
         db.commit()
         c.close()
@@ -115,7 +125,51 @@ def register_user():
           'message': [name, email]
         })
     
+@app.route('/login', methods=['POST'])
+def login_user():
+    data = request.get_json()
+    email = data['email']
+    password = data['password']
 
+    
+    c = db.cursor(dictionary=True)
+    c.execute("select * from tbl_users where email = %s", (email,))
+    user = c.fetchone()
+
+    if user is None:
+        return jsonify({'message': 'usuário não encontrado'}), 401
+    
+    userPass = user['password']
+    
+    if not bcrypt.check_password_hash(userPass, password):
+        return jsonify({'message': 'usuário não encontrado'}), 401
+    
+    session["user_id"] = user["userId"]
+    
+    return jsonify ({"message": user['username']})
+
+@app.route('/userinfo')
+def get_user_info():
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({'error': "Unauthorized"}), 401
+    
+    user =  c = db.cursor(dictionary=True)
+    c.execute("select * from tbl_users where userId = %s", (user_id,))
+    user = c.fetchone()
+
+    return jsonify ({
+        "id": user['userId'],
+        "email": user['email'],
+        "role": user['role']
+    })
+
+@app.route("/logout", methods=["POST"])
+def logout_user():
+    print(session['user_id'])
+    session.pop("user_id")
+    return "200"
     
 if __name__ == '__main__':
     app.run(debug=True)
