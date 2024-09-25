@@ -160,6 +160,7 @@ def get_user_info():
     user = c.fetchone()
 
     return jsonify ({
+        "nome": user['username'],
         "id": user['userId'],
         "email": user['email'],
         "role": user['role']

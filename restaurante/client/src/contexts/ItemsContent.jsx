@@ -1,8 +1,24 @@
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
+import httpClient from "../hooks/httpClient"
 
 export const ItemsContext = createContext({})
 
 export const ItemsContextProvider = ({children}) => {
+
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await httpClient.get("//localhost:5000/userinfo");
+        setUser(response.data)
+      } catch (error) {
+        console.error("Erro ao buscar dados do usuário:", error);
+      }
+    };
+
+    getUser();
+  }, [])
 
   const [cartItems, setCartItems] = useState([])
 
@@ -30,6 +46,7 @@ export const ItemsContextProvider = ({children}) => {
     cartItems,
     addToCart,
     removeToCart,
+    user
   }
   
   return (

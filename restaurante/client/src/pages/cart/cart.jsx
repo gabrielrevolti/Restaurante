@@ -1,18 +1,20 @@
 
-import { Link } from "react-router-dom";
 import "./cart.css"
-import { TiArrowLeftThick } from "react-icons/ti";
+
 import { AiOutlineClose } from "react-icons/ai";
 import { useItems } from "../../hooks/useItems";
+import Arrow from "../components/arrow-icon/Arrow";
 
 const Cart = () => {
   const {cartItems,removeToCart} = useItems()
   return (
     <>
     <div className="cover cart">
-    <Link to="/"><TiArrowLeftThick className="arrow"/></Link> 
+
+      
+    
       <div className="container-cart">
-          <h1>Carrinho</h1>
+          <h1 className="title-h1">Carrinho</h1>
           {cartItems.map((item) => (
             <div className="items-cart" key={item.itemId}>
             <div className="first-part">
@@ -30,6 +32,7 @@ const Cart = () => {
           </div>
           ))}
         </div>
+        <Arrow/>
     </div>
     </>
    

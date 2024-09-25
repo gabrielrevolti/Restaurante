@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import httpClient from "../../hooks/httpClient";
+import "./styles/login.css"
+import Arrow from "../components/arrow-icon/Arrow";
 
 
 const Login = () => {
@@ -16,56 +18,44 @@ const Login = () => {
     setItem((current) => ({ ...current, [ev.target.id]: ev.target.value }))
   }
 
-  const handleSubmit = async () => {
+const handleSubmit = async () => {
     const email = item.email
     const password = item.password
-    const resp = await httpClient.post("//localhost:5000/login", {
+    await httpClient.post("//localhost:5000/login", {
       email,
       password
     })
+
+    setItem(defaultItem)
+    window.location.href = "/";
 };
 
-const handleLogout = async () => {
-  await httpClient.post("//localhost:5000/logout");
-  window.location.href = "/";
-}
 
-const handleData = async (e) => {
-  e.preventDefault()
-    const response = await fetch('http://127.0.0.1:5000/user_info', {
-    method: 'GET',
-    credentials: 'include',
-    headers: {
-        'Content-Type': 'application/json'
-    }
 
-});
-  const data = await response.json()
-  console.log(data['message'])
-}
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-      <input 
-          type="email" id="email" value={item.email} placeholder="Email" onChange={handleChange} />
-      </form>
-
-      <br/>
-      <br/>
-
-      <input type="password" id="password" value={item.password} placeholder="Senha" onChange={handleChange}/>
-
-      <br/>
-      <br/>
-
+    <div className="container-login">
+      <div className="container-div">
+        <p className="text-login">Login</p>
+        <div className="container-inputs">
+          <input className="inputs-login" type="email" id="email" value={item.email} placeholder="Email" onChange={handleChange} />
+          <input className="inputs-login" type="password" id="password" value={item.password} placeholder="Senha" onChange={handleChange}/>
+        </div>
       <div>
-        <button onClick={handleSubmit}>Entrar</button>
-        <button onClick={handleLogout}>Logout</button>
-        <button onClick={handleData}>Pegar dados do usuário</button>
+        <button className="button-input" onClick={handleSubmit}>Entrar</button>
+        <br />
+        <div className="div-register">
+          <span>Não tem cadastro?</span><Link className="link" to="register">Cadastre-se</Link>
+        </div>
       </div>
-      <Link to="/">Voltar</Link> |
-      <Link to="register">cadastrar</Link>
+      
+    </div>
+    
+    <div>
+    </div>
+    <Arrow/>
+    </div>
     </>
   )
   

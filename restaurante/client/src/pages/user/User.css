@@ -1,0 +1,66 @@
+.user-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("./images/background-black.png");
+}
+
+.user-div {
+  height: 380px;
+  width: 425px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 9px;
+  gap: 50px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.user-icon {
+  font-size: 50px;
+}
+
+.user-name, .user-email {
+  font-size: 18px;
+}
+
+.button-input {
+  display: inline-block;
+  padding: 13px;
+  width: 300px;
+  border: 1px solid rgba(216, 213, 213, 0.692);
+  color: white;
+  font-size: 1.7rem;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+.button-input::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0%;
+  height: 100%;
+  background: white;
+  transition: 0.3s linear;
+  z-index: -1;
+}
+
+.button-input:hover::before {
+  width: 100%;
+  left: 0;
+}
+
+.button-input:hover {
+  color: black;
+  transition: 0.4s;
+}
