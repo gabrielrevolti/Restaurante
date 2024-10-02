@@ -65,6 +65,7 @@
   position: relative;
   overflow: hidden;
   background: transparent;
+  cursor: pointer;
 }
 
 .button-input::before {
