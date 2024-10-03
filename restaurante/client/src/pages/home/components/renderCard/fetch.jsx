@@ -9,7 +9,7 @@ import RegisterCard from "./registerModal/registerCard";
 
 const Fetch = () => {
 
-  const {addToCart} = useItems()
+  const {addToCart, user} = useItems()
 
   const [pratos, setPratos] = useState([])
 
@@ -21,6 +21,20 @@ const Fetch = () => {
       setPratos(data)
       }
       getData()
+  }
+
+  const getUser = () => {
+    if (user) {
+      if (user.role == 'admin') {
+        return true
+      }
+    else {
+      return false
+    }
+    }
+    else {
+      return null
+    }
   }
 
   useEffect( () => {
@@ -58,18 +72,24 @@ const Fetch = () => {
   return (
       <div className="container">
         {pratos.map((prato) => (
-          <div className="Card" key={prato.itemId}>
+          <div className="Card" key={prato.itemId} onClick={() => addToCart(prato)}>
             <Cards name={prato.itemName} description={prato.itemDescription} image={prato.itemImage} price={prato.itemPrice}/>
-            <div className="icons">
-              <UpdateModal  item={prato} updatePrato={() => update()}/>
-              <AiOutlineClose className="icon x-btn" onClick={() => handleDeleteItem(prato.itemId)}/>
-            </div>
-            <button onClick={() => addToCart(prato)}>adicionar</button>
+            {getUser() ? 
+              <div className="icons">
+                <UpdateModal  item={prato} updatePrato={() => update()}/>
+                <AiOutlineClose className="icon x-btn" onClick={() => handleDeleteItem(prato.itemId)}/>
+              </div>
+              : null
+            }
           </div>
         ))}
-        <div>
-          <RegisterCard updatePrato={() => update()}/>
-        </div>
+        {getUser() ? 
+          <div>
+           <RegisterCard updatePrato={() => update()}/>
+         </div>
+         : null
+        }
+       
       </div>
   );
 }

@@ -30,9 +30,6 @@ const handleSubmit = async () => {
     window.location.href = "/";
 };
 
-
-
-
   return (
     <>
     <div className="container-login">

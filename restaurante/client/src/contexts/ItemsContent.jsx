@@ -9,12 +9,13 @@ export const ItemsContextProvider = ({children}) => {
 
   useEffect(() => {
     const getUser = async () => {
-      try {
-        const response = await httpClient.get("//localhost:5000/userinfo");
-        setUser(response.data)
-      } catch (error) {
-        console.error("Erro ao buscar dados do usuário:", error);
-      }
+    const response = await httpClient.get("//localhost:5000/userinfo");
+
+    if (response.data.error) {
+      setUser(null)
+    } else {
+      setUser(response.data)
+    }
     };
 
     getUser();
