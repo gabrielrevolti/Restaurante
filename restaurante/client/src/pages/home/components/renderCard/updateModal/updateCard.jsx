@@ -30,7 +30,7 @@ const UpdateModal = (props) => {
             <div className="modal-inputs">
               <Form toggle={togleModal} itemToUpdate={props.item} updatePrato={props.updatePrato}/>
             </div>
-            <AiOutlineClose className="close-btn close-modal" onClick={togleModal}/>
+            <AiOutlineClose className="close-btn-cart close-modal-cart" onClick={togleModal}/>
           </div>
         </div>
       )}

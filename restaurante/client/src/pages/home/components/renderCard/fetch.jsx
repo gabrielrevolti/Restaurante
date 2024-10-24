@@ -6,6 +6,8 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useItems } from "../../../../hooks/useItems";
 import UpdateModal from "./updateModal/updateCard";
 import RegisterCard from "./registerModal/registerCard";
+import { ItemsContext } from "../../../../contexts/ItemsContent";
+import { ItemToCart } from "./itemToCart/itemToCart";
 
 const Fetch = () => {
 
@@ -72,8 +74,7 @@ const Fetch = () => {
   return (
       <div className="container">
         {pratos.map((prato) => (
-          <div className="Card" key={prato.itemId} onClick={() => addToCart(prato)}>
-            <Cards name={prato.itemName} description={prato.itemDescription} image={prato.itemImage} price={prato.itemPrice}/>
+          <div className="Card" key={prato.itemId}>
             {getUser() ? 
               <div className="icons">
                 <UpdateModal  item={prato} updatePrato={() => update()}/>
@@ -81,6 +82,9 @@ const Fetch = () => {
               </div>
               : null
             }
+            <ItemToCart item={prato}>
+              <Cards name={prato.itemName} description={prato.itemDescription} image={prato.itemImage} price={prato.itemPrice}/>
+            </ItemToCart>
           </div>
         ))}
         {getUser() ? 

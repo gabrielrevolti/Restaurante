@@ -1,0 +1,62 @@
+body.active-modal {
+  overflow-y: hidden;
+}
+
+.btn-modal-cart {
+  padding: 10px 20px;
+  display: block;
+  margin: 100px auto 0;
+  font-size: 18px;
+}
+
+.modal-cart, .overlay-cart {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.modal-cart {
+
+  z-index: 2000;
+}
+
+.overlay-cart {
+  background: rgba(49,49,49,0.8);
+}
+.modal-content-cart {
+  display: flex;
+  color: white;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: rgba(29, 28, 28, 0.900);
+  padding: 14px 28px;
+  border-radius: 3px;
+  width: 600px;
+  border-radius: 5px;
+}
+
+.close-modal-cart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
+}
+
+.modal-title-cart {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.close-btn-cart {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
