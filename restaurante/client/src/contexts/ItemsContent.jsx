@@ -24,18 +24,22 @@ export const ItemsContextProvider = ({children}) => {
   const [cartItems, setCartItems] = useState([])
 
   const addToCart = (item) => {
-    const verify = cartItems.filter(i => i.itemId == item.itemId)
-    console.log(verify)
-    if(verify.length >= 1){
-      item.itemQuantity += 1
+    const existingItem = cartItems.find(i => i.itemId === item.itemId);
+  
+    if (existingItem) {
+      const updatedCartItems = cartItems.map(i => 
+        i.itemId === item.itemId 
+          ? { ...i, itemQuantity: i.itemQuantity + 1 } 
+          : i
+      );
+      setCartItems(updatedCartItems);
+    } else {
+      const newItem = { ...item, itemQuantity: 1 };
+      setCartItems([...cartItems, newItem]);
     }
-    else {
-      const updatedCartItems = [...cartItems, item]
-      setCartItems(updatedCartItems)
-      item.itemQuantity = 1
-    }
-   console.log(cartItems)
-  }
+  
+    console.log(cartItems);
+  };
 
   const removeToCart = (itemId) => {
     const updatedCartItems = cartItems.filter(item => item.itemId !== itemId)

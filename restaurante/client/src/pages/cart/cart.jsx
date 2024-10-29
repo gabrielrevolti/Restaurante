@@ -6,7 +6,7 @@ import { useItems } from "../../hooks/useItems";
 import Arrow from "../components/arrow-icon/Arrow";
 
 const Cart = () => {
-  const {cartItems,removeToCart} = useItems()
+  const {cartItems, removeToCart} = useItems()
   return (
     <>
     <div className="cover cart">

@@ -33,7 +33,7 @@ export const ItemToCart = ({ children, item }) => {
             <AiOutlineClose className="close-btn close-modal" onClick={toggleModal} />
             <button
               onClick={(event) => {
-                event.stopPropagation(); // Impede o fechamento do modal ao clicar no botão
+                event.stopPropagation();
                 addToCart(item);
               }}
             >
