@@ -9,13 +9,14 @@ export const ItemToCart = ({ children, item }) => {
   const [updateModal, setUpdateModal] = useState(false);
   const [textA, setTextA] = useState('');
   const [quantity, setQuantity] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(parseFloat(item.itemPrice)); // Estado para o preço total
+  const [totalPrice, setTotalPrice] = useState(parseFloat(item.itemPrice).toFixed(2)); // Formatar o preço inicial
   const { addToCart } = useItems();
 
   const toggleModal = () => {
     setUpdateModal(!updateModal);
     setQuantity(1); // Reseta a quantidade para 1 toda vez que o modal é aberto
-    setTotalPrice(parseFloat(item.itemPrice)); // Reseta o preço total para o preço do item
+    // Formata o preço inicial do item com duas casas decimais
+    setTotalPrice(parseFloat(item.itemPrice).toFixed(2));
   };
 
   const handleChange = (event) => {
@@ -25,7 +26,8 @@ export const ItemToCart = ({ children, item }) => {
   const increaseQuantity = () => {
     setQuantity((prevQuantity) => {
       const newQuantity = prevQuantity + 1;
-      setTotalPrice((newQuantity * parseFloat(item.itemPrice)).toFixed(2)); // Atualiza o preço total
+      // Atualiza o preço total formatado para duas casas decimais
+      setTotalPrice((newQuantity * parseFloat(item.itemPrice)).toFixed(2));
       return newQuantity;
     });
   };
@@ -33,7 +35,8 @@ export const ItemToCart = ({ children, item }) => {
   const decreaseQuantity = () => {
     setQuantity((prevQuantity) => {
       const newQuantity = prevQuantity > 1 ? prevQuantity - 1 : 1;
-      setTotalPrice((newQuantity * parseFloat(item.itemPrice)).toFixed(2)); // Atualiza o preço total
+      // Atualiza o preço total formatado para duas casas decimais
+      setTotalPrice((newQuantity * parseFloat(item.itemPrice)).toFixed(2));
       return newQuantity;
     });
   };
@@ -85,7 +88,7 @@ export const ItemToCart = ({ children, item }) => {
                   addToCart(item, quantity); // Passando a quantidade atualizada para o carrinho
                   toggleModal(); // Fechar modal após adicionar
                 }}> 
-                  <span>Adicionar</span><span> R$ {totalPrice}</span> {/* Exibe o preço total atualizado */}
+                  <span>Adicionar</span><span>R$ {totalPrice}</span>  {/* Exibe o preço total atualizado */}
                 </button>
               </div>
               </div>
