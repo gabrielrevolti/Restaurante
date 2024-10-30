@@ -2,14 +2,8 @@ body.active-modal {
   overflow-y: hidden;
 }
 
-.btn-modal-cart {
-  padding: 10px 20px;
-  display: block;
-  margin: 100px auto 0;
-  font-size: 18px;
-}
-
-.modal-cart, .overlay-cart {
+.modal-cart,
+.overlay-cart {
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -20,26 +14,29 @@ body.active-modal {
 }
 
 .modal-cart {
-
   z-index: 2000;
 }
 
 .overlay-cart {
-  background: rgba(49,49,49,0.8);
+  background: rgba(49, 49, 49, 0.8);
 }
+
 .modal-content-cart {
   display: flex;
+  justify-content: center;
+  gap: 100px;
   color: white;
   position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  margin: auto;
+  transform: translate(0, 0);
   line-height: 1.4;
-  background: rgba(29, 28, 28, 0.900);
+  background: rgba(29, 28, 28, 0.9);
   padding: 14px 28px;
-  border-radius: 3px;
-  width: 600px;
   border-radius: 5px;
+  width: 800px;
+  height: 400px;
+  cursor: initial;
 }
 
 .close-modal-cart {
@@ -50,7 +47,6 @@ body.active-modal {
 }
 
 .modal-title-cart {
-  text-align: center;
   font-size: 20px;
   margin-bottom: 5px;
 }
@@ -60,3 +56,87 @@ body.active-modal {
   width: 30px;
   cursor: pointer;
 }
+
+.modal-content-img {
+  width: 230px;
+  height: auto;
+  border-radius: 12px;
+  margin: 10px 0 10px 0;
+}
+
+.modal-content-main {
+  margin: 10px 0px 10px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+.modal-content-text {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.modal-content-client-text {
+  margin-top: 15px;
+}
+
+.obs {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.text-area {
+  margin-top: 6px;
+  resize: none;
+  padding: 5px;
+  border-radius: 5px;
+  background: #dcdcdc; /* Cinza pálido */
+
+}
+
+.buttons-modal {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.quantity-controls {
+  margin: 10px 0px 10px 0px;
+  display: flex;
+  align-items: center;
+  border: 2px solid rgba(169, 169, 169, 0.226);
+  border-radius: 3px;
+  padding: 3px;
+}
+
+.quantity-controls button {
+  border: none; /* Remove a borda */
+  background: none; /* Remove o fundo */
+  font-size: 10px; /* Ajusta o tamanho da fonte */
+  padding: 0 10px; /* Adiciona espaço ao redor para facilitar o clique */
+  color: rgb(234, 29, 44); /* Mantém o cursor de botão */
+  cursor: pointer;
+}
+
+.quantity-controls span {
+  font-size: 12px; /* Ajusta o tamanho da fonte do número */
+  margin: 0 5px; /* Espaçamento entre o número e os botões */
+}
+
+.button-add-cart {
+  padding: 5px 10px;
+  border: 2px solid rgb(179, 15, 15);
+  border-radius: 5px;
+  color: #fff;
+  background-color: rgb(179, 15, 15);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+}
+
+
+
+

@@ -17,28 +17,27 @@ export const ItemsContextProvider = ({children}) => {
       setUser(response.data)
     }
     };
-
     getUser();
   }, [])
 
   const [cartItems, setCartItems] = useState([])
 
-  const addToCart = (item) => {
+  const addToCart = (item, quantity = 1) => {
     const existingItem = cartItems.find(i => i.itemId === item.itemId);
   
     if (existingItem) {
-      const updatedCartItems = cartItems.map(i => 
-        i.itemId === item.itemId 
-          ? { ...i, itemQuantity: i.itemQuantity + 1 } 
+      // Atualiza o item existente com a nova quantidade
+      const updatedCartItems = cartItems.map(i =>
+        i.itemId === item.itemId
+          ? { ...i, itemQuantity: i.itemQuantity + quantity }
           : i
       );
       setCartItems(updatedCartItems);
     } else {
-      const newItem = { ...item, itemQuantity: 1 };
+      // Adiciona o novo item com a quantidade especificada
+      const newItem = { ...item, itemQuantity: quantity };
       setCartItems([...cartItems, newItem]);
     }
-  
-    console.log(cartItems);
   };
 
   const removeToCart = (itemId) => {
