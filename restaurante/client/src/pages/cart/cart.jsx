@@ -2,6 +2,7 @@ import "./cart.css";
 import { AiOutlineClose } from "react-icons/ai";
 import { useItems } from "../../hooks/useItems";
 import Arrow from "../components/arrow-icon/Arrow";
+import DeliveryCalculator from "./cep/cep";
 
 const Cart = () => {
   const { cartItems, removeToCart } = useItems();
@@ -10,6 +11,7 @@ const Cart = () => {
     <div className="cover cart">
       <div className="container-cart">
         <h1 className="title-h1">Carrinho</h1>
+        <div className="cart-content">
         {cartItems.map((item) => (
           <div className="items-cart" key={item.itemId}>
             <div className="first-part">
@@ -30,6 +32,8 @@ const Cart = () => {
             />
           </div>
         ))}
+        </div>
+        <DeliveryCalculator/>
       </div>
       <Arrow />
     </div>

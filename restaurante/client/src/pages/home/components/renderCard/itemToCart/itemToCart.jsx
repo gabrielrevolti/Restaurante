@@ -12,6 +12,7 @@ export const ItemToCart = ({ children, item }) => {
   const [totalPrice, setTotalPrice] = useState(parseFloat(item.itemPrice).toFixed(2)); // Formatar o preço inicial
   const { addToCart } = useItems();
 
+  console.log(item)
   const toggleModal = () => {
     setUpdateModal(!updateModal);
     setQuantity(1); // Reseta a quantidade para 1 toda vez que o modal é aberto

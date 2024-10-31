@@ -1,0 +1,11 @@
+.input_cep {
+  height: 40px;
+  border-color: gray;
+  border-width: 1px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.p_error {
+  color: red;
+}

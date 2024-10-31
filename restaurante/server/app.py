@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, session
+import requests
 from flask_bcrypt import Bcrypt
 from config import AplicationConfig
 from flask_session import Session
@@ -230,6 +231,7 @@ def logout_user():
     except Exception as e:
         print(f"Erro ao fazer logout: {str(e)}")
         return jsonify({'error': 'Erro ao fazer logout'}), 500
+    
 
 if __name__ == '__main__':
     app.run()
