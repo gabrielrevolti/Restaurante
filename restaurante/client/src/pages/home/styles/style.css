@@ -28,7 +28,7 @@ section {
 }
 
 .cover {
-  background: url(../images/background-black.png) no-repeat;
+  background: url(../images/background-black.png) fixed;
   background-size: cover;
   background-position: center;
 }

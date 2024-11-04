@@ -11,7 +11,8 @@
 }
 
 .container_main {
-  height: 500px;
+  min-height: 500px;
+  height: auto;
   width: 800px;
   display: flex;
   flex-direction: column;
@@ -40,6 +41,7 @@
 
 .left {
   padding: 10px;
+  border: 3px solid green;
 }
 
 .left span {
@@ -71,4 +73,89 @@
 .info_arrow {
   display: flex;
   align-items: center;
+}
+
+.right {
+  border: 3px solid yellow;
+  width: 300px;
+}
+
+.right p {
+  font-size: 18px;
+  color: white;
+}
+
+.right .title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.right .boxOrder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.right .orders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.right .item {
+  height: 60px;
+  border-bottom: 2px solid white;
+  margin-top: 20px;
+}
+
+.right .itemInfo {
+  font-size: 16px;
+  color: white;
+  font-weight: lighter;
+  margin-right: 20px;
+}
+
+.right .price {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.box {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.box div {
+  margin: 0;
+  padding: 0;
+  
+}
+
+.right .subtotal {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  font-size: 12px;
+  color: white;
+  
+}
+
+.right .delivery {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  font-size: 12px;
+  color: white;
+}
+
+.right .total {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  font-size: 12px;
+  color: white;
 }
