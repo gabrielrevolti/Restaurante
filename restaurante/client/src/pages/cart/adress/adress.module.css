@@ -1,0 +1,118 @@
+.container_div {
+  padding-top: 15px;
+  height: 300px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container_inputs {
+ display: flex;
+ flex-direction: column;
+ gap: 18px;
+}
+
+.input {
+  width: 300px;
+  border-radius: 20px;
+  padding: 13px;
+  color: rgb(204, 204, 204);
+  border: 1px solid rgba(216, 213, 213, 0.692);
+  background-color: transparent;
+}
+
+/* .button-input {
+  width: 300px;
+  border-radius: 20px;
+  padding: 13px;
+  color: black;
+  background-color: white;
+} */
+
+.button_input {
+  display: inline-block;
+  padding: 13px;
+  width: 300px;
+  border: 1px solid rgba(216, 213, 213, 0.692);
+  color: white;
+  font-size: 1.7rem;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  cursor: pointer;
+}
+
+.button_input::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0%;
+  height: 100%;
+  background: white;
+  transition: 0.3s linear;
+  z-index: -1;
+}
+
+.button_input:hover::before {
+  width: 100%;
+  left: 0;
+}
+
+.button_input:hover {
+  color: black;
+  transition: 0.4s;
+}
+
+.div_register{
+  text-align: center;
+  color: rgb(204, 204, 204);
+  font-size: 12px;
+}
+
+
+.link {
+  color: white;
+  margin: 5px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.postalcode {
+  width: 80px;
+  margin-right: 5px;
+}
+
+.user {
+  width: 150px;
+}
+
+.street {
+  width: 130px;
+  margin-right: 5px;
+  
+}
+
+.number {
+ width: 75px;
+ margin-right: 5px;
+}
+
+.complement {
+  width: 150px;
+}
+
+.neighborhood {
+ width: 130px;
+ margin-right: 5px;
+}
+
+.city {
+  width: 100px;
+}
+

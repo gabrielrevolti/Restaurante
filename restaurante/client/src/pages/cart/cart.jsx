@@ -2,38 +2,51 @@ import "./cart.css";
 import { AiOutlineClose } from "react-icons/ai";
 import { useItems } from "../../hooks/useItems";
 import Arrow from "../components/arrow-icon/Arrow";
-import DeliveryCalculator from "./cep/cep";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { cartItems, removeToCart } = useItems();
+
+  // Calcula o total
+  const totalAmount = cartItems.reduce(
+    (acc, item) => acc + parseFloat(item.itemPrice) * item.itemQuantity,
+    0
+  );
 
   return (
     <div className="cover cart">
       <div className="container-cart">
         <h1 className="title-h1">Carrinho</h1>
         <div className="cart-content">
-        {cartItems.map((item) => (
-          <div className="items-cart" key={item.itemId}>
-            <div className="first-part">
-              <div>
-                <img className="image-cart" src={item.itemImage} alt={item.itemName} />
+          {cartItems.map((item) => (
+            <div className="items-cart" key={item.itemId}>
+              <div className="first-part">
+                <div>
+                  <img
+                    className="image-cart"
+                    src={item.itemImage}
+                    alt={item.itemName}
+                  />
+                </div>
+                <div className="information">
+                  <p className="title-cart">{item.itemName}</p>
+                </div>
               </div>
-              <div className="information">
-                <p className="title-cart">{item.itemName}</p>
-              </div>
+              <span className="quantity-cart">{item.itemQuantity}</span>
+              <span className="price-cart">
+                R$ {(parseFloat(item.itemPrice) * item.itemQuantity).toFixed(2)}
+              </span>
+              <AiOutlineClose
+                className="x-button"
+                onClick={() => removeToCart(item.itemId)}
+              />
             </div>
-            <span className="quantity-cart">{item.itemQuantity}</span>
-            <span className="price-cart">
-              R$ {(parseFloat(item.itemPrice) * item.itemQuantity).toFixed(2)}
-            </span>
-            <AiOutlineClose 
-              className="x-button" 
-              onClick={() => removeToCart(item.itemId)}
-            />
-          </div>
-        ))}
+          ))}
         </div>
-        <DeliveryCalculator/>
+        <div className="finish-order">
+          <p>Total : R$ {totalAmount.toFixed(2)}</p>
+          <Link to='payment'>Escolher forma de pagamento</Link>
+        </div>
       </div>
       <Arrow />
     </div>

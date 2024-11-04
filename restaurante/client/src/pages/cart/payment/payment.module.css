@@ -1,0 +1,74 @@
+.main {
+  min-height: 100vh;
+  background-image: url("../images/background-black.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+}
+
+.container_main {
+  height: 500px;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 9px;
+  gap: 50px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.text_order {
+  font-size: 24px;
+  color: white;
+  padding-top: 5px;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  width: 750px;
+  border: 3px solid red;
+}
+
+.left {
+  padding: 10px;
+}
+
+.left span {
+  font-size: 18px;
+  color: white;
+  border-bottom: 2px solid white;
+}
+
+.left button {
+  background: none;        
+    border: none;            
+    padding: 0;              
+    margin: 0;               
+    cursor: pointer;         
+    outline: none;           
+}
+
+.arrow {
+  font-size: 14px;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.arrow.active {
+  transform: rotate(90deg);
+}
+
+
+.info_arrow {
+  display: flex;
+  align-items: center;
+}
