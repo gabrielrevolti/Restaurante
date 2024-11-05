@@ -1,8 +1,9 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useEffect, useState } from "react";
+import calculateFrete from "../pages/cart/adress/cep";
 
-export const AddressContext = createContext({})
+export const AddressContext = createContext({});
 
-export const AdressContextProvider = ({children}) => {
+export const AddressContextProvider = ({ children }) => {
   const defaultAddress = {
     postalcode: "",
     user: "",
@@ -11,29 +12,25 @@ export const AdressContextProvider = ({children}) => {
     complement: "",
     neighborhood: "",
     city: "",
+    state: "",
   };
 
   const [address, setAddress] = useState(defaultAddress);
   const [frete, setFrete] = useState({ price: null, error: null });
 
+  const validationPostalCode = !address.neighborhood && !address.city && !address.street;
+
   const handleChange = (ev) => {
-    setAddress((current) => ({ ...current, [ev.target.id]: ev.target.value }));
+    let { id, value } = ev.target;
+
+    if (id === "postalcode") {
+      value = value.replace("-", "");
+    }
+
+    setAddress((current) => ({ ...current, [id]: value }));
   };
 
-  useEffect(() => {
-    if (address.postalcode.length === 8) {
-      console.log('Uma pesquisa')
-      handleCep()
-      console.log("não está em loop")
-    }
-  }, [address.postalcode]);
-
-  const handlePostalcodeInfo = async () => {
-    if (address.postalcode.length !== 8) {
-      alert("Por favor, insira um CEP válido com 8 dígitos.");
-      return;
-    }
-
+  const fetchAddressByCep = async () => {
     try {
       const response = await fetch(`https://viacep.com.br/ws/${address.postalcode}/json/`);
       const data = await response.json();
@@ -48,6 +45,7 @@ export const AdressContextProvider = ({children}) => {
         street: data.logradouro,
         neighborhood: data.bairro,
         city: data.localidade,
+        state: data.uf,
       }));
     } catch (error) {
       console.error("Erro ao buscar CEP:", error);
@@ -55,28 +53,60 @@ export const AdressContextProvider = ({children}) => {
     }
   };
 
-  const handleCalculateFrete = async () => {
-    const result = await calculateFrete(address.postalcode);
-    setFrete(result);
+  const fetchCepByAddress = async () => {
+    if (address.city && address.street) {
+      try {
+        const response = await fetch(
+          `https://viacep.com.br/ws/SP/${address.city}/${address.street}/json/`
+        );
+        const data = await response.json();
+
+        if (!data || data.length === 0) {
+          alert("Nenhum CEP encontrado para o endereço fornecido.");
+          return;
+        }
+
+        setAddress((current) => ({
+          ...current,
+          postalcode: data[0].cep.replace("-", ""),
+        }));
+      } catch (error) {
+        console.error("Erro ao buscar o CEP:", error);
+        alert("Não foi possível buscar o CEP com os dados fornecidos.");
+      }
+    }
   };
 
-  const handleCep = async () => {
-    await handlePostalcodeInfo();
-    // await handleCalculateFrete();
-  }
+  useEffect(() => {
+    if (address.postalcode.length === 8 && validationPostalCode) {
+      fetchAddressByCep();
+    }
+  }, [address.postalcode]);
+
+  useEffect(() => {
+    if (!address.postalcode && address.street && address.neighborhood && address.city && address.state) {
+      fetchCepByAddress();
+    }
+  }, [address.street, address.neighborhood, address.city]);
+
+  
+  const handleCalculateFrete = async () => {
+    // const result = await calculateFrete(address.postalcode);
+    // setFrete(result);
+  };
 
   const info = {
     address,
     frete,
     handleChange,
-    handleCep
-  }
+    handleCalculateFrete,
+  };
 
   return (
     <AddressContext.Provider value={info}>
       {children}
     </AddressContext.Provider>
-    ) 
-}
+  );
+};
 
-export default AdressContextProvider;
+export default AddressContextProvider;

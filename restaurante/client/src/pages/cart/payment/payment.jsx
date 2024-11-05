@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styles from './payment.module.css';
 import { IoIosArrowForward } from "react-icons/io";
-import { FaMagnifyingGlass } from "react-icons/fa6";
 import Adress from '../adress/adress';
 import { useItems } from '../../../hooks/useItems';
 import Arrow from '../../components/arrow-icon/Arrow';

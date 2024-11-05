@@ -2,16 +2,17 @@ import { useEffect, useState } from "react";
 import Cards from "../cards/card";
 import "../cards/cards.css"
 import { AiOutlineClose } from "react-icons/ai";
-
 import { useItems } from "../../../../hooks/useItems";
 import UpdateModal from "./updateModal/updateCard";
 import RegisterCard from "./registerModal/registerCard";
-import { ItemsContext } from "../../../../contexts/ItemsContent";
 import { ItemToCart } from "./itemToCart/itemToCart";
+import { useUser } from "../../../../hooks/useUser";
 
 const Fetch = () => {
 
-  const {addToCart, user} = useItems()
+  const {addToCart} = useItems()
+
+  const {user} = useUser()
 
   const [pratos, setPratos] = useState([])
 

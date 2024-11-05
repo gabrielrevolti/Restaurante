@@ -1,12 +1,12 @@
 import "./User.css"
 import { FaUser } from "react-icons/fa";
-import { useItems } from "../../hooks/useItems";
 import Arrow from "../components/arrow-icon/Arrow";
 import httpClient from "../../hooks/httpClient";
+import { useUser } from "../../hooks/useUser";
 
 const User = () => {
 
-  const {user} = useItems()
+  const {user} = useUser()
 
   const handleLogout = async () => {
     await httpClient.post("//localhost:5000/logout");
@@ -26,4 +26,4 @@ const User = () => {
   )
 }
 
-export default User
+export default User;

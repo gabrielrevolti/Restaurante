@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import logoChef from "../images/logo-chef-menu.png"
 import "./header.css";
 import { FaUser } from "react-icons/fa";
-import { useItems } from "../../hooks/useItems";
+import { useUser } from "../../hooks/useUser";
 
 const Header = () => {
 
-  const {user} = useItems()
+  const {user} = useUser()
 
   return (
     <header className="header">

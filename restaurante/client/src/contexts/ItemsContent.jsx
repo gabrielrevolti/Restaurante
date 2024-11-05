@@ -1,24 +1,8 @@
 import { createContext, useEffect, useState } from "react"
-import httpClient from "../hooks/httpClient"
 
 export const ItemsContext = createContext({})
 
 export const ItemsContextProvider = ({children}) => {
-
-  const [user, setUser] = useState(null)
-
-  useEffect(() => {
-    const getUser = async () => {
-    const response = await httpClient.get("//localhost:5000/userinfo");
-
-    if (response.data.error) {
-      setUser(null)
-    } else {
-      setUser(response.data)
-    }
-    };
-    getUser();
-  }, [])
 
   const [cartItems, setCartItems] = useState([])
 
@@ -26,7 +10,6 @@ export const ItemsContextProvider = ({children}) => {
     const existingItem = cartItems.find(i => i.itemId === item.itemId);
   
     if (existingItem) {
-      // Atualiza o item existente com a nova quantidade
       const updatedCartItems = cartItems.map(i =>
         i.itemId === item.itemId
           ? { ...i, itemQuantity: i.itemQuantity + quantity }
@@ -34,7 +17,6 @@ export const ItemsContextProvider = ({children}) => {
       );
       setCartItems(updatedCartItems);
     } else {
-      // Adiciona o novo item com a quantidade especificada
       const newItem = { ...item, itemQuantity: quantity };
       setCartItems([...cartItems, newItem]);
     }
@@ -50,7 +32,6 @@ export const ItemsContextProvider = ({children}) => {
     cartItems,
     addToCart,
     removeToCart,
-    user
   }
   
   return (
