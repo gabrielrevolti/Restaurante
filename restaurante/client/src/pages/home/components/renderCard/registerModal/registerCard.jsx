@@ -29,7 +29,7 @@ const RegisterCard = (props) => {
           <div className="modal-content">
             <h2 className="modal-title">Registrar</h2>
             <div className="modal-inputs">
-              <Form toggle={toggleModal} updatePrato={props.updatePrato}/>
+              <Form toggle={toggleModal} updatePrato={props.updatePrato} itemType={props.itemType}/>
             </div>
             <AiOutlineClose className="close-btn close-modal" onClick={toggleModal}/>
           </div>

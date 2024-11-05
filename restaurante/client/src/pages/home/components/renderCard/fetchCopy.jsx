@@ -18,7 +18,7 @@ const Fetch = ({ itemType }) => {
       const response = await fetch('http://127.0.0.1:5000');
       const data = await response.json();
       // Filtrar os pratos de acordo com o tipo de item recebido como prop
-      const filteredData = data.filter(prato => prato.itemType === itemType);
+      const filteredData = data.filter(prato => prato.type === itemType);
       setPratos(filteredData);
     };
     getData();
@@ -80,7 +80,7 @@ const Fetch = ({ itemType }) => {
       ))}
       {getUser() ? 
         <div>
-          <RegisterCard updatePrato={() => update()} itemType={itemType}/>
+          <RegisterCard updatePrato={() => update()} />
         </div>
         : null
       }

@@ -8,12 +8,15 @@ const Form = (props) => {
     itemDescription: "",
     itemPrice: "",
     itemId: +"",
-    itemQuantity: 0
+    itemQuantity: 0,
   }
+
+  const itemType = props.itemType
+  console.log(itemType)
 
   const items = props.itemToUpdate
 
-  const [item, setItem] = useState(items ? items :defaultItem)
+  const [item, setItem] = useState(items ? items : defaultItem)
 
   const toggle = props.toggle
   const updatePrato = props.updatePrato
@@ -23,13 +26,14 @@ const Form = (props) => {
   }
 
     const handleSubmit = async (e) => {
+      const itemData = {item, itemType}
         e.preventDefault();
         await fetch('http://127.0.0.1:5000/submit', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({item})
+            body: JSON.stringify(itemData)
         });
         setItem(defaultItem)
         updatePrato()
@@ -73,7 +77,7 @@ const Form = (props) => {
               <input
               type="text" id='itemDescription' value={item.itemDescription} onChange={handleChange} placeholder="Descrição"/>
             </div>
-            
+
           </div>
         </form>
         <div className="btn-input">

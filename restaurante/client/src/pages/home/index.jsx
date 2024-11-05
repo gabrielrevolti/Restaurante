@@ -1,10 +1,9 @@
 import Fetch from './components/renderCard/fetch';
-import Header from '../../components/header/header'
-import burgueImg from "./images/burguer.png"
+import Header from '../../components/header/header';
+import burgueImg from "./images/burguer.png";
 import './styles/style.css';
 
 const Index = () => {
-  
   return (
     <>
       <div className='cover'>
@@ -28,16 +27,25 @@ const Index = () => {
         </section>
 
         <section className="shopping section-cards" id="shopping">
-        <h1 className="heading"> Pedir <span>pratos</span></h1>
+          <h2 className="heading"> Pedir <span>Hamburguer</span></h2>
 
-        <div className="box-container">
-          <Fetch/> {/* Faz um fetch no banco de dados e renderiza na tela*/}
-        </div>
+          <div className="box-container">
+            <Fetch itemType="hamburguer" /> 
+          </div>
+
+          <h2 className="heading"> Pedir <span>Acompanhamento</span></h2>
+          <div className='box-container'>
+            <Fetch itemType="acompanhamento" />
+          </div>
+
+          <h2 className="heading"> Pedir <span>Bebida</span></h2>
+          <div className='box-container'>
+            <Fetch itemType="bebida" />
+          </div>
         </section>
       </div>
     </>
-  )
-    
+  );
 };
 
 export default Index;

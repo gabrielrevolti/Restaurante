@@ -68,15 +68,17 @@ def submit_form():
 
     try:
         data = request.get_json()
+        print(data)
         name = data['item'].get('itemName')
         image = data['item'].get('itemImage')
         description = data['item'].get('itemDescription')
         price = data['item'].get('itemPrice')
+        iType = data.get('itemType')
 
         if name and image and description and price:
             c = db.cursor()
-            query = """INSERT INTO tbl_items (itemName, itemImage, itemDescription, itemPrice) VALUES (%s, %s, %s, %s);"""
-            c.execute(query, (name, image, description, price))
+            query = """INSERT INTO tbl_items (itemName, itemImage, itemDescription, itemType,  itemPrice) VALUES (%s, %s, %s, %s, %s);"""
+            c.execute(query, (name, image, description, iType, price))
             db.commit()
             c.close()
             db.close()
@@ -234,4 +236,4 @@ def logout_user():
     
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
