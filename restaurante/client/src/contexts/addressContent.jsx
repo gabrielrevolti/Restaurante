@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import calculateFrete from "../pages/cart/adress/cep";
+import calculateFrete from "./cep";
 
 export const AddressContext = createContext({});
 
@@ -16,7 +16,7 @@ export const AddressContextProvider = ({ children }) => {
   };
 
   const [address, setAddress] = useState(defaultAddress);
-  const [frete, setFrete] = useState({ price: null, error: null });
+  const [frete, setFrete] = useState({ price: 0, error: null });
 
   const validationPostalCode = !address.neighborhood && !address.city && !address.street;
 
@@ -47,6 +47,9 @@ export const AddressContextProvider = ({ children }) => {
         city: data.localidade,
         state: data.uf,
       }));
+
+      // Calcular o frete após buscar o endereço pelo CEP
+      handleCalculateFrete();
     } catch (error) {
       console.error("Erro ao buscar CEP:", error);
       alert("Não foi possível buscar o CEP. Tente novamente.");
@@ -70,6 +73,9 @@ export const AddressContextProvider = ({ children }) => {
           ...current,
           postalcode: data[0].cep.replace("-", ""),
         }));
+
+        // Calcular o frete após obter o CEP pelo endereço
+        handleCalculateFrete();
       } catch (error) {
         console.error("Erro ao buscar o CEP:", error);
         alert("Não foi possível buscar o CEP com os dados fornecidos.");
@@ -89,17 +95,21 @@ export const AddressContextProvider = ({ children }) => {
     }
   }, [address.street, address.neighborhood, address.city]);
 
-  
   const handleCalculateFrete = async () => {
-    // const result = await calculateFrete(address.postalcode);
-    // setFrete(result);
+    console.log("Frete calculado")
+    try {
+      const result = await calculateFrete(address.postalcode);
+      setFrete(result);
+    } catch (error) {
+      console.error("Erro ao calcular o frete:", error);
+      setFrete({ price: 0, error: "Erro ao calcular o frete." });
+    }
   };
 
   const info = {
     address,
     frete,
     handleChange,
-    handleCalculateFrete,
   };
 
   return (

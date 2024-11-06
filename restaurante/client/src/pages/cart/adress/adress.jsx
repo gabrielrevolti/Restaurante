@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styles from './adress.module.css';
-import calculateFrete from './cep';
 import { useAddress } from '../../../hooks/useAddress';
 
 

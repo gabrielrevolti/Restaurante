@@ -9,14 +9,13 @@ export const ItemToCart = ({ children, item }) => {
   const [updateModal, setUpdateModal] = useState(false);
   const [textA, setTextA] = useState('');
   const [quantity, setQuantity] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(parseFloat(item.itemPrice).toFixed(2)); // Formatar o preço inicial
+  const [totalPrice, setTotalPrice] = useState(parseFloat(item.itemPrice).toFixed(2));
   const { addToCart } = useItems();
 
   console.log(item)
   const toggleModal = () => {
     setUpdateModal(!updateModal);
-    setQuantity(1); // Reseta a quantidade para 1 toda vez que o modal é aberto
-    // Formata o preço inicial do item com duas casas decimais
+    setQuantity(1);
     setTotalPrice(parseFloat(item.itemPrice).toFixed(2));
   };
 
@@ -27,7 +26,6 @@ export const ItemToCart = ({ children, item }) => {
   const increaseQuantity = () => {
     setQuantity((prevQuantity) => {
       const newQuantity = prevQuantity + 1;
-      // Atualiza o preço total formatado para duas casas decimais
       setTotalPrice((newQuantity * parseFloat(item.itemPrice)).toFixed(2));
       return newQuantity;
     });
@@ -36,7 +34,6 @@ export const ItemToCart = ({ children, item }) => {
   const decreaseQuantity = () => {
     setQuantity((prevQuantity) => {
       const newQuantity = prevQuantity > 1 ? prevQuantity - 1 : 1;
-      // Atualiza o preço total formatado para duas casas decimais
       setTotalPrice((newQuantity * parseFloat(item.itemPrice)).toFixed(2));
       return newQuantity;
     });
@@ -50,10 +47,8 @@ export const ItemToCart = ({ children, item }) => {
 
   return (
     <div onClick={toggleModal} className="card-container">
-      {/* Div envolvente que abre o modal */}
       {children}
 
-      {/* Modal de detalhes do item */}
       {updateModal && (
         <div className="modal-cart">
           <div onClick={toggleModal} className="overlay-cart"></div>
@@ -86,10 +81,10 @@ export const ItemToCart = ({ children, item }) => {
                 <div>
                 <button className="button-add-cart" onClick={(event) => {
                   event.stopPropagation();
-                  addToCart(item, quantity); // Passando a quantidade atualizada para o carrinho
-                  toggleModal(); // Fechar modal após adicionar
+                  addToCart(item, quantity);
+                  toggleModal();
                 }}> 
-                  <span>Adicionar</span><span>R$ {totalPrice}</span>  {/* Exibe o preço total atualizado */}
+                  <span>Adicionar</span><span>R$ {totalPrice}</span>
                 </button>
               </div>
               </div>

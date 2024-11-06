@@ -4,16 +4,19 @@ import { IoIosArrowForward } from "react-icons/io";
 import Adress from '../adress/adress';
 import { useItems } from '../../../hooks/useItems';
 import Arrow from '../../components/arrow-icon/Arrow';
+import { useAddress } from '../../../hooks/useAddress';
 
 
 const Payment = () => {
 
+  const {frete} = useAddress()
+
   const {cartItems} = useItems()
+
   const totalAmount = cartItems.reduce(
     (acc, item) => acc + parseFloat(item.itemPrice) * item.itemQuantity,
     0
   );
-  const delivery = 10
 
   const [adress, setAdress] = useState(true);
   const [payment, setPayment] = useState(false);
@@ -61,12 +64,12 @@ const Payment = () => {
 
               <div className={styles.delivery}>
                 <span>Taxa de entrega</span>
-               <span>R$ {delivery.toFixed(2)}</span>
+               <span>R$ {frete.price.toFixed(2)}</span>
               </div>
 
               <div className={styles.total}>
                 <span>Total</span>
-                <span>R$ {(delivery + totalAmount).toFixed(2)}</span>
+                <span>R$ {(frete.price + totalAmount).toFixed(2)}</span>
               </div>
               </div>
             </div>
