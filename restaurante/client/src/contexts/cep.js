@@ -21,7 +21,7 @@ const calculateFrete = async (userCep) => {
 
       if (distanceValue) {
           if (distanceValue > maxDeliveryDistance) {
-              return { price: null, error: 'A entrega está fora da área de alcance.' };
+              return { price: 0, error: 'A entrega está fora da área de alcance.' };
           } else {
               const price = calcularPreco(distanceValue);
               return { price, error: null };
@@ -30,7 +30,7 @@ const calculateFrete = async (userCep) => {
           throw new Error('Dados de distância não encontrados');
       }
   } catch (error) {
-      return { price: null, error: 'Erro ao calcular a distância. Verifique os CEPs e tente novamente.' };
+      return { price: 0, error: 'Erro ao calcular a distância. Verifique os CEPs e tente novamente.' };
   }
 };
 

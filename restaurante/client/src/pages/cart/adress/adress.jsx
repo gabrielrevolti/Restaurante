@@ -75,8 +75,6 @@ const Adress = () => {
         </div>
       </div>
       <div>
-      {frete.price !== null && <p>Preço do Frete: R$ {frete.price.toFixed(2)}</p>}
-      
         <br />
       </div>
     </div>

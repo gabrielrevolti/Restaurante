@@ -3,6 +3,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useItems } from "../../hooks/useItems";
 import Arrow from "../components/arrow-icon/Arrow";
 import { Link } from "react-router-dom";
+import { IoIosArrowForward } from "react-icons/io";
 
 const Cart = () => {
   const { cartItems, removeToCart } = useItems();
@@ -43,10 +44,15 @@ const Cart = () => {
             </div>
           ))}
         </div>
-        <div className="finish-order">
-          <p>Total : R$ {totalAmount.toFixed(2)}</p>
-          <Link to='payment'>Escolher forma de pagamento</Link>
-        </div>
+        {cartItems.length === 0 ? null :
+        <>
+          <div className="bar"></div>
+          <div className="finish_order">
+            <p className="price">Total : R$ <strong>{totalAmount.toFixed(2)}</strong></p>
+            <Link className="linkCart" to='payment'>Escolher forma de pagamento <IoIosArrowForward className="arrowL"/></Link>
+          </div>
+        </>
+        }
       </div>
       <Arrow />
     </div>
