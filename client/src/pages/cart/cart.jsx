@@ -4,9 +4,10 @@ import { useItems } from "../../hooks/useItems";
 import Arrow from "../components/arrow-icon/Arrow";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
+import { FaPlus, FaMinus } from "react-icons/fa";
 
 const Cart = () => {
-  const { cartItems, removeToCart } = useItems();
+  const { cartItems, removeToCart, increaseQuantity, decreaseQuantity } = useItems();
 
   // Calcula o total
   const totalAmount = cartItems.reduce(
@@ -33,7 +34,11 @@ const Cart = () => {
                   <p className="title-cart">{item.itemName}</p>
                 </div>
               </div>
-              <span className="quantity-cart">{item.itemQuantity}</span>
+              <div className="quantity-controls-cart">
+                <button onClick={() => decreaseQuantity(item.itemId)} className="quantity-button-cart"><FaMinus /></button>
+                <span className="quantity-cart">{item.itemQuantity}</span>
+                <button onClick={() => increaseQuantity(item.itemId)} className="quantity-button-cart"><FaPlus /></button>
+              </div>
               <span className="price-cart">
                 R$ {(parseFloat(item.itemPrice) * item.itemQuantity).toFixed(2)}
               </span>

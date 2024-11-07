@@ -8,9 +8,6 @@ const App = () => {
     <AppProviders>
       <RouterProvider router={router}/>
     </AppProviders>
-      
-    
-    
   )
 }
 

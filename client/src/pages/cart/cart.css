@@ -1,4 +1,4 @@
-
+a
 .container-cart h1{
   font-weight: bold;
   color: #fff;
@@ -109,4 +109,27 @@
   color: white;
   font-size: 15px;
   margin-left: 6px;
+}
+
+.quantity-controls-cart {
+  margin: 10px 0px 10px 0px;
+  display: flex;
+  align-items: center;
+  border: 2px solid rgba(169, 169, 169, 0.226);
+  border-radius: 15px;
+  padding: 5px 3px;
+}
+
+.quantity-controls-cart button {
+  border: none;
+  background: none;
+  font-size: 10px;
+  padding: 0 10px;
+  color: rgb(234, 29, 44);
+  cursor: pointer;
+}
+
+.quantity-controls-cart span {
+  font-size: 12px;
+  margin: 0 5px;
 }

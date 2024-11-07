@@ -12,7 +12,6 @@ export const ItemToCart = ({ children, item }) => {
   const [totalPrice, setTotalPrice] = useState(parseFloat(item.itemPrice).toFixed(2));
   const { addToCart } = useItems();
 
-  console.log(item)
   const toggleModal = () => {
     setUpdateModal(!updateModal);
     setQuantity(1);
@@ -35,7 +34,7 @@ export const ItemToCart = ({ children, item }) => {
     setQuantity((prevQuantity) => {
       const newQuantity = prevQuantity > 1 ? prevQuantity - 1 : 1;
       setTotalPrice((newQuantity * parseFloat(item.itemPrice)).toFixed(2));
-      return newQuantity;
+      return newQuantity;aaa
     });
   };
 

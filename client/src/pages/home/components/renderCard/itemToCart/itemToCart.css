@@ -111,17 +111,17 @@ body.active-modal {
 }
 
 .quantity-controls button {
-  border: none; /* Remove a borda */
-  background: none; /* Remove o fundo */
-  font-size: 10px; /* Ajusta o tamanho da fonte */
-  padding: 0 10px; /* Adiciona espaço ao redor para facilitar o clique */
-  color: rgb(234, 29, 44); /* Mantém o cursor de botão */
+  border: none;
+  background: none;
+  font-size: 10px;
+  padding: 0 10px;
+  color: rgb(234, 29, 44);
   cursor: pointer;
 }
 
 .quantity-controls span {
-  font-size: 12px; /* Ajusta o tamanho da fonte do número */
-  margin: 0 5px; /* Espaçamento entre o número e os botões */
+  font-size: 12px;
+  margin: 0 5px;
 }
 
 .button-add-cart {
