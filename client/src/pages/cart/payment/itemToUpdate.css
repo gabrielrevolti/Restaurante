@@ -1,0 +1,142 @@
+body.active-modal {
+  overflow-y: hidden;
+}
+
+.modal-cart,
+.overlay-cart {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.modal-cart {
+  z-index: 2000;
+}
+
+.overlay-cart {
+  background: rgba(49, 49, 49, 0.8);
+}
+
+.modal-content-cart {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  color: white;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  transform: translate(0, 0);
+  line-height: 1.4;
+  background: rgba(29, 28, 28, 0.9);
+  padding: 14px 28px;
+  border-radius: 5px;
+  width: 800px;
+  height: 400px;
+  cursor: initial;
+}
+
+.close-modal-cart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
+}
+
+.modal-title-cart {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.close-btn-cart {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.modal-content-img {
+  width: 230px;
+  height: auto;
+  border-radius: 12px;
+  margin: 10px 0 10px 0;
+}
+
+.modal-content-main {
+  margin: 10px 0px 10px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+.modal-content-text {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.modal-content-client-text {
+  margin-top: 15px;
+}
+
+.obs {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.text-area {
+  margin-top: 6px;
+  resize: none;
+  padding: 5px;
+  border-radius: 5px;
+  background: #dcdcdc; /* Cinza pálido */
+
+}
+
+.buttons-modal {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.quantity-controls {
+  margin: 10px 0px 10px 0px;
+  display: flex;
+  align-items: center;
+  border: 2px solid rgba(169, 169, 169, 0.226);
+  border-radius: 3px;
+  padding: 3px;
+}
+
+.quantity-controls button {
+  border: none;
+  background: none;
+  font-size: 10px;
+  padding: 0 10px;
+  color: rgb(234, 29, 44);
+  cursor: pointer;
+}
+
+.quantity-controls span {
+  font-size: 12px;
+  margin: 0 5px;
+}
+
+.button-add-cart {
+  padding: 5px 10px;
+  border: 2px solid rgb(179, 15, 15);
+  border-radius: 5px;
+  color: #fff;
+  background-color: rgb(179, 15, 15);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+}
+
+
+
+

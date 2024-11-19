@@ -6,8 +6,11 @@ import { FaMinus } from "react-icons/fa";
 import { useItems } from "../../../../../hooks/useItems";
 
 export const ItemToCart = ({ children, item }) => {
+  const {cartItems} = useItems()
+  const foundItem = cartItems.find(i => i.itemId === item.itemId)
+
   const [updateModal, setUpdateModal] = useState(false);
-  const [textA, setTextA] = useState('');
+  const [textA, setTextA] = useState(foundItem?.notes || '');
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(parseFloat(item.itemPrice).toFixed(2));
   const { addToCart } = useItems();
@@ -34,7 +37,7 @@ export const ItemToCart = ({ children, item }) => {
     setQuantity((prevQuantity) => {
       const newQuantity = prevQuantity > 1 ? prevQuantity - 1 : 1;
       setTotalPrice((newQuantity * parseFloat(item.itemPrice)).toFixed(2));
-      return newQuantity;aaa
+      return newQuantity;
     });
   };
 
@@ -80,7 +83,7 @@ export const ItemToCart = ({ children, item }) => {
                 <div>
                 <button className="button-add-cart" onClick={(event) => {
                   event.stopPropagation();
-                  addToCart(item, quantity);
+                  addToCart(item, quantity, textA);
                   toggleModal();
                 }}> 
                   <span>Adicionar</span><span>R$ {totalPrice}</span>
