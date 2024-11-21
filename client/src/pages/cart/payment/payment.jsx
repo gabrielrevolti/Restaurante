@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './payment.module.css';
 import { IoIosArrowForward } from "react-icons/io";
 import Adress from '../adress/adress';
@@ -6,19 +6,38 @@ import { useItems } from '../../../hooks/useItems';
 import Arrow from '../../components/arrow-icon/Arrow';
 import { useAddress } from '../../../hooks/useAddress';
 import { FaRegTrashAlt } from "react-icons/fa";
-import { ItemToUpdate } from './itemToUpdate'; // Ajuste o caminho conforme necessário
+import { ItemToUpdate } from './itemToUpdate';
+import { useNavigate } from 'react-router-dom';
 
 const Payment = () => {
-  const { frete } = useAddress();
+  const { address, frete } = useAddress();
   const { cartItems, removeToCart } = useItems();
   const [adress, setAdress] = useState(true);
   const [payment, setPayment] = useState(false);
-  const [updateItem, setUpdateItem] = useState(null); // Item a ser atualizado
+  const [updateItem, setUpdateItem] = useState(null);
+  const navigate = useNavigate();
 
   const totalAmount = cartItems.reduce(
     (acc, item) => acc + parseFloat(item.itemPrice) * item.itemQuantity,
     0
   );
+
+  const handleOrder = () => {
+    const validationAddress = address.postalcode && address.city && address.complement && address.neighborhood && address.number && address.street && address.user
+
+    if (validationAddress) {
+      console.log('Tudo certo');
+    } else {
+      console.log('não deu certo');
+    }
+    
+  }
+
+  useEffect(() => {
+    if (cartItems.length === 0) {
+      navigate('/');
+    }
+  }, [cartItems.length == 0])
 
   return (
     <div className={styles.main}>
@@ -71,6 +90,9 @@ const Payment = () => {
                 <div className={styles.total}>
                   <span>Total</span>
                   <span>R$ {(frete.price + totalAmount).toFixed(2)}</span>
+                </div>
+                <div>
+                  <button onClick={() => handleOrder()}>Finalizar</button>
                 </div>
               </div>
             </div>
