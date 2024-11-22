@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import styles from './payment.module.css';
 import { IoIosArrowForward } from "react-icons/io";
+import { FaTrashAlt } from "react-icons/fa";
 import Adress from '../adress/adress';
 import { useItems } from '../../../hooks/useItems';
 import Arrow from '../../components/arrow-icon/Arrow';
 import { useAddress } from '../../../hooks/useAddress';
-import { FaRegTrashAlt } from "react-icons/fa";
 import { ItemToUpdate } from './itemToUpdate';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../../hooks/useUser';
 
 const Payment = () => {
+  const {user} = useUser()
   const { address, frete } = useAddress();
   const { cartItems, removeToCart } = useItems();
   const [adress, setAdress] = useState(true);
@@ -23,14 +25,56 @@ const Payment = () => {
   );
 
   const handleOrder = () => {
-    const validationAddress = address.postalcode && address.city && address.complement && address.neighborhood && address.number && address.street && address.user
+    const validationAddress = address.postalcode && address.city  && address.neighborhood && address.number && address.street && address.user
 
     if (validationAddress) {
       console.log('Tudo certo');
+      const orderData = {
+        user_id: user?.id,
+        customer_name: address.user,
+        postal_code: address.postalcode,
+        street: address.street,
+        number: address.number,
+        complement: address.complement,
+        city: address.city,
+        neighborhood: address.neighborhood,
+        total_amount: totalAmount,
+        cart_items: cartItems.map(item => ({
+          item_id: item.itemId,
+          item_price: item.itemPrice,
+          item_quantity: item.itemQuantity,
+          item_obs: item.notes
+        })),
+      };
+      console.log(orderData);  // Você pode verificar a estrutura antes de enviar
+      
+      const createOrder = async () => {
+        try {
+          const response = await fetch('http://127.0.0.1:5000/createOrder', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderData),  // Passando os dados do pedido
+          });
+      
+          const data = await response.json();
+          if (response.ok) {
+            alert('Pedido criado com sucesso! Pedido ID: ' + data.order_id);
+          } else {
+            alert('Erro ao criar o pedido: ' + data.error);
+          }
+        } catch (error) {
+          alert('Erro ao fazer a requisição: ' + error);
+        }
+      };
+
+      createOrder()
+
     } else {
       console.log('não deu certo');
     }
-    
+   
   }
 
   useEffect(() => {
@@ -73,7 +117,7 @@ const Payment = () => {
                     <span className={styles.price}>R$ {item.itemPrice}</span>
                     <div className={styles.actions}>
                       <span className={styles.update} onClick={() => setUpdateItem(item)}>Atualizar</span> {/* Abre o modal */}
-                      <FaRegTrashAlt className={styles.trash} onClick={() => removeToCart(item.itemId)} />
+                      <FaTrashAlt className={styles.trash} onClick={() => removeToCart(item.itemId)} />
                     </div>
                   </div>
                 ))}
@@ -92,7 +136,7 @@ const Payment = () => {
                   <span>R$ {(frete.price + totalAmount).toFixed(2)}</span>
                 </div>
                 <div>
-                  <button onClick={() => handleOrder()}>Finalizar</button>
+                  <button className={styles.finishOrder} onClick={() => handleOrder()}>Finalizar</button>
                 </div>
               </div>
             </div>

@@ -177,3 +177,14 @@
   color: #868686;
   cursor: pointer;
 }
+
+.finishOrder {
+  margin-top: 20px;
+  padding: 7px 18px;
+  border: 2px solid rgb(179, 15, 15);
+  background-color: rgb(179, 15, 15);
+  color: #fff;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}

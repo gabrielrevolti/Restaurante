@@ -234,6 +234,73 @@ def logout_user():
         print(f"Erro ao fazer logout: {str(e)}")
         return jsonify({'error': 'Erro ao fazer logout'}), 500
     
+@app.route('/createOrder', methods=['POST'])
+def create_order():
+    data = request.get_json() # Supondo que o frontend envia os dados em JSON
+    print(data)
+    user_id = data.get('user_id', None)  # Pode ser None para usuários não logados
+    customer_name = data['customer_name']
+    postal_code = data['postal_code']
+    street = data['street']
+    number = data['number']
+    neighborhood = data['neighborhood']
+    complement = data.get('complement', '')
+    city = data['city']
+    total_amount = data['total_amount']  # Valor total calculado no frontend
+    cart_items = data['cart_items']  # Array de itens no carrinho
+
+    connection = None
+    cursor = None
+
+    try:
+        # Conectar ao banco
+        connection = get_db_connection()
+        if not connection:
+            raise Exception("Não foi possível conectar ao banco de dados.")
+
+        cursor = connection.cursor()
+
+        # Iniciar transação
+        connection.start_transaction()
+
+        # Inserir pedido na tabela 'orders'
+        cursor.execute("""
+            INSERT INTO orders (user_id, customer_name, postal_code, street, numberHouse,neighborhood, complement, city, total_amount)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);
+        """, (user_id, customer_name, postal_code, street, number, neighborhood, complement, city, total_amount))
+
+        # Obter o ID do pedido gerado
+        order_id = cursor.lastrowid
+
+        # Inserir itens do pedido na tabela 'order_items'
+        for item in cart_items:
+            item_id = item['item_id']
+            item_price = item['item_price']
+            item_quantity = item['item_quantity']
+            item_obs = item.get('item_obs', '')  # Observação é opcional
+
+            cursor.execute("""
+                INSERT INTO order_items (order_id, item_id, item_price, item_quantity, item_obs)
+                VALUES (%s, %s, %s, %s, %s);
+            """, (order_id, item_id, item_price, item_quantity, item_obs))
+
+        # Commit da transação
+        connection.commit()
+
+        return jsonify({"message": "Pedido criado com sucesso", "order_id": order_id}), 201
+
+    except Exception as e:
+        if connection:
+            connection.rollback()  # Reverter alterações em caso de erro
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        # Fechar cursor e conexão
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.close()
+
 
 if __name__ == '__main__':
     app.run(debug=True)

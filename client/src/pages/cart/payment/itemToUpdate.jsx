@@ -64,7 +64,7 @@ export const ItemToUpdate = ({ item, onClose }) => {
                 updateCartItemQuantity(item.itemId, quantity, textA);
                 onClose();
               }}> 
-                <span>Enviar</span><span>R$ {totalPrice}</span>
+                <span>Atualizar</span><span>R$ {totalPrice}</span>
               </button>
             </div>
           </div>
