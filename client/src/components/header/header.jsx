@@ -3,6 +3,7 @@ import logoChef from "../images/logo-chef-menu.png"
 import "./header.css";
 import { FaUser } from "react-icons/fa";
 import { useUser } from "../../hooks/useUser";
+import { MdAdminPanelSettings } from "react-icons/md";
 
 const Header = () => {
 
@@ -24,6 +25,9 @@ const Header = () => {
       {user ? <Link to="/user" className="nav-menu-item"><FaUser /></Link> :
       <Link to="/login" className="nav-menu-item">Entrar</Link>
       }
+      { user?.role === 'admin' ? <Link to='panel' className="ete"><MdAdminPanelSettings className="admin"/></Link> : ''
+      } 
+    
       
     </nav>
   </header>

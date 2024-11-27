@@ -35,10 +35,10 @@ header .navbar a:hover {
   color: rgb(209, 10, 10);
 }
 
-#menu-bar {
-  font-size: 2rem;
-  cursor: pointer;
-  color: #fff;
-  padding: 0.4rem;
-  display: none;
+
+.admin {
+  font-size: 3rem;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
 }

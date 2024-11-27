@@ -1,0 +1,10 @@
+.main {
+  min-height: 100vh;
+  background: url(../../public/images/background-black.png) fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+.container {
+  
+}
